@@ -42,15 +42,15 @@ export async function userRoutes(app: FastifyInstance) {
 
     const { email, name, password } = userSchema.parse(request.body);
 
-    const userAlreadyExists = await prisma.user.findUnique({
+    const emailAlreadyExists = await prisma.user.findUnique({
       where: {
         email,
       },
     });
 
-    if (userAlreadyExists) {
+    if (emailAlreadyExists) {
       reply.status(400).send({
-        error: "User already exists",
+        error: "Email already exists",
       });
       return;
     }
