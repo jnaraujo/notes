@@ -3,10 +3,19 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
 
-export function userRoutes(app: FastifyInstance) {
-  app.get("/users", async (request, reply) => {
+export async function userRoutes(app: FastifyInstance) {
+  app.get("/users/me", async (request, reply) => {
+    await request.jwtVerify();
+
+    const { name, email } = await prisma.user.findUniqueOrThrow({
+      where: {
+        email: request.user.email,
+      },
+    });
+
     reply.status(200).send({
-      users: [],
+      name,
+      email,
     });
   });
 
@@ -46,7 +55,7 @@ export function userRoutes(app: FastifyInstance) {
       return;
     }
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         email,
         name,
@@ -54,8 +63,17 @@ export function userRoutes(app: FastifyInstance) {
       },
     });
 
-    reply.status(201).send();
-  });
+    const token = app.jwt.sign(
+      {
+        name,
+        email,
+      },
+      {
+        expiresIn: "30d",
+        sub: user.id,
+      }
+    );
 
-  return app;
+    reply.status(201).send(token);
+  });
 }
