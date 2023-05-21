@@ -20,12 +20,12 @@ model User {
 
 model Note {
   id        String   @id @default(uuid())
-  userId    String
   title     String
   content   String
   isPublic  Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  author User @relation(fields: [userId], references: [id])
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
 }
