@@ -1,0 +1,13 @@
+{
+  "name": "notes",
+  "version": "0.1.0",
+  "author": "Jônatas Araújo <contato@jnaraujo.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev-server": "tsx watch ./server/src/server.ts"
+  },
+  "workspaces": [
+    "server"
+  ]
+}
