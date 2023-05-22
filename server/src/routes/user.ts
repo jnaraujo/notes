@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
-import { z } from "zod";
+import { Prisma } from "@prisma/client";
 import { prisma } from "../lib/prisma";
+import { z } from "zod";
 import bcrypt from "bcrypt";
 
 export async function userRoutes(app: FastifyInstance) {
@@ -24,6 +25,9 @@ export async function userRoutes(app: FastifyInstance) {
       name: z.string({
         required_error: "Name is required",
       }),
+      username: z.string({
+        required_error: "Username is required",
+      }),
       email: z
         .string({
           required_error: "Email is required",
@@ -40,26 +44,37 @@ export async function userRoutes(app: FastifyInstance) {
         }),
     });
 
-    const { email, name, password } = userSchema.parse(request.body);
+    const { email, name, password, username } = userSchema.parse(request.body);
+
+    const usernameAlreadyExists = await prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (usernameAlreadyExists) {
+      reply.status(400).send({
+        error: "Username already exists",
+      });
+    }
 
     const emailAlreadyExists = await prisma.user.findUnique({
-      where: {
-        email,
-      },
+      where: { email },
     });
 
     if (emailAlreadyExists) {
       reply.status(400).send({
         error: "Email already exists",
       });
-      return;
     }
 
     const user = await prisma.user.create({
       data: {
         email,
+        username,
         name,
         password: bcrypt.hashSync(password, 10),
+      },
+      select: {
+        id: true,
       },
     });
 
