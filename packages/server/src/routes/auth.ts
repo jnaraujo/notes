@@ -4,7 +4,7 @@ import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
 
 export async function authRoutes(app: FastifyInstance) {
-  app.post("/auth", async (request, reply) => {
+  app.post("/auth/login", async (request, reply) => {
     const bodySchema = z.object({
       email: z.string().email({}),
       password: z.string(),
