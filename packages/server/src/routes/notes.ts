@@ -2,16 +2,11 @@ import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import truncate from "../utils/truncate";
+import { noteIdSchema, noteSchema, usernameSchema } from "../schemas/note";
 
 export async function notesRoutes(app: FastifyInstance) {
   app.post("/notes", async (request, reply) => {
     await request.jwtVerify();
-
-    const noteSchema = z.object({
-      title: z.string(),
-      content: z.string(),
-      isPublic: z.coerce.boolean().optional().default(false),
-    });
 
     const { title, content, isPublic } = noteSchema.parse(request.body);
 
@@ -53,11 +48,7 @@ export async function notesRoutes(app: FastifyInstance) {
   });
 
   app.get("/notes/:id", async (request, reply) => {
-    const paramsSchema = z.object({
-      id: z.string(),
-    });
-
-    const { id } = paramsSchema.parse(request.params);
+    const { id } = noteIdSchema.parse(request.params);
 
     const note = await prisma.note.findUnique({
       where: {
@@ -91,11 +82,7 @@ export async function notesRoutes(app: FastifyInstance) {
   app.delete("/notes/:id", async (request, reply) => {
     await request.jwtVerify();
 
-    const paramsSchema = z.object({
-      id: z.string(),
-    });
-
-    const { id } = paramsSchema.parse(request.params);
+    const { id } = noteIdSchema.parse(request.params);
 
     const note = await prisma.note.findUnique({
       where: {
@@ -129,19 +116,7 @@ export async function notesRoutes(app: FastifyInstance) {
   app.put("/notes/:id", async (request, reply) => {
     await request.jwtVerify();
 
-    const paramsSchema = z.object({
-      id: z.string(),
-    });
-
-    const { id } = paramsSchema.parse(request.params);
-
-    const noteSchema = z.object({
-      title: z.string().optional(),
-      content: z.string().optional(),
-      isPublic: z.coerce.boolean().optional().default(false),
-    });
-
-    const { title, content, isPublic } = noteSchema.parse(request.body);
+    const { id } = noteIdSchema.parse(request.params);
 
     const note = await prisma.note.findUnique({
       where: {
@@ -155,6 +130,8 @@ export async function notesRoutes(app: FastifyInstance) {
       });
       return;
     }
+
+    const { title, content, isPublic } = noteSchema.parse(request.body);
 
     if (note.authorId !== request.user.sub) {
       reply.status(401).send({
@@ -190,11 +167,7 @@ export async function notesRoutes(app: FastifyInstance) {
   });
 
   app.get("/notes/user/:username", async (request, reply) => {
-    const paramsSchema = z.object({
-      username: z.string(),
-    });
-
-    const { username } = paramsSchema.parse(request.params);
+    const { username } = usernameSchema.parse(request.params);
 
     const user = await prisma.user.findUnique({
       where: {
