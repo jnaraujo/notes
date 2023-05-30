@@ -1,8 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { Prisma } from "@prisma/client";
 import { prisma } from "../lib/prisma";
-import { z } from "zod";
-import bcrypt from "bcrypt";
 
 export async function userRoutes(app: FastifyInstance) {
   app.get("/users/me", async (request, reply) => {
@@ -18,77 +15,5 @@ export async function userRoutes(app: FastifyInstance) {
       name,
       email,
     });
-  });
-
-  app.post("/users", async (request, reply) => {
-    const userSchema = z.object({
-      name: z.string({
-        required_error: "Name is required",
-      }),
-      username: z.string({
-        required_error: "Username is required",
-      }),
-      email: z
-        .string({
-          required_error: "Email is required",
-        })
-        .email({
-          message: "Invalid email",
-        }),
-      password: z
-        .string({
-          required_error: "Password is required",
-        })
-        .min(8, {
-          message: "Password must have at least 8 characters",
-        }),
-    });
-
-    const { email, name, password, username } = userSchema.parse(request.body);
-
-    const usernameAlreadyExists = await prisma.user.findUnique({
-      where: { username },
-    });
-
-    if (usernameAlreadyExists) {
-      reply.status(400).send({
-        error: "Username already exists",
-      });
-    }
-
-    const emailAlreadyExists = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (emailAlreadyExists) {
-      reply.status(400).send({
-        error: "Email already exists",
-      });
-    }
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        username,
-        name,
-        password: bcrypt.hashSync(password, 10),
-      },
-      select: {
-        id: true,
-      },
-    });
-
-    const token = app.jwt.sign(
-      {
-        name,
-        email,
-      },
-      {
-        expiresIn: "30d",
-        sub: user.id,
-      }
-    );
-
-    reply.status(201).send(token);
   });
 }
