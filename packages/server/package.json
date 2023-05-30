@@ -1,8 +1,10 @@
 {
-  "name": "server",
+  "name": "@notes/server",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch ./src/server.ts"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/node": "^20.2.1",
