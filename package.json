@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "server-dev": "yarn workspace @notes/server dev"
+    "server-dev": "yarn workspace @notes/server dev",
+    "web-dev": "yarn workspace @notes/web dev"
   },
   "workspaces": {
     "packages": [
