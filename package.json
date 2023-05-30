@@ -7,7 +7,9 @@
   "scripts": {
     "dev-server": "tsx watch ./server/src/server.ts"
   },
-  "workspaces": [
-    "server"
-  ]
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
 }
