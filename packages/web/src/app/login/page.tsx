@@ -1,31 +1,13 @@
+import LoginForm from "@/components/LoginForm";
 import { Github } from "lucide-react";
 
 export default function Login() {
   return (
-    <main className="flex  h-screen items-center justify-center ">
-      <div className="flex flex-col gap-6 w-72">
+    <main className="flex h-screen items-center justify-center">
+      <div className="flex flex-col p-4 gap-6 w-full md:w-96">
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold text-zinc-800 w-64">Faça login para continuar</h1>
-
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-lg">Email:</label>
-              <input type="email" id="email" className="border border-gray-400 rounded-md p-2" placeholder="Ex: john@example.com" tabIndex={1} />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="password" className="text-lg">Senha:</label>
-              <input type="password" id="password" className="border border-gray-400 rounded-md p-2" placeholder="***********" tabIndex={2} />
-
-              <a className="text-purple-700 text-right font-medium hover:text-purple-500 transition" href="#" tabIndex={4}>
-                Esqueceu a senha?
-              </a>
-            </div>
-          </div>
-
-          <button className="bg-zinc-900 text-white rounded-md p-2 hover:bg-zinc-700 transition focus:outline-zinc-400" tabIndex={3}>
-            Login
-          </button>
-
+          <h1 className="text-2xl font-bold text-zinc-800 w-64">Faça login para continuar 👋</h1>
+          <LoginForm />
         </div>
 
         <div className="flex flex-col gap-4">
@@ -42,12 +24,10 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
-          <p className="text-center">
-            Não tem uma conta?
-            <a className="text-purple-700 font-medium hover:text-purple-500 transition" href="#"> Crie uma agora!</a>
-          </p>
-        </div>
+        <p className="text-center">
+          Não tem uma conta?
+          <a className="text-purple-700 font-medium hover:text-purple-500 transition" href="#"> Crie uma agora!</a>
+        </p>
       </div>
     </main>
   )
