@@ -76,7 +76,29 @@ export async function notesRoutes(app: FastifyInstance) {
       return;
     }
 
-    reply.status(200).send(note);
+    const author = await prisma.user.findUnique({
+      where: {
+        id: note.authorId,
+      },
+      select: {
+        username: true,
+        name: true,
+      },
+    });
+
+    if (!author) {
+      reply.status(404).send({
+        error: "Author not found",
+      });
+      return;
+    }
+
+    const { authorId, ...noteWithoutAuthorId } = note;
+
+    reply.status(200).send({
+      ...noteWithoutAuthorId,
+      author,
+    });
   });
 
   app.delete("/notes/:id", async (request, reply) => {
