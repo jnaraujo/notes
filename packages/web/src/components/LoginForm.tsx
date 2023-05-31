@@ -26,11 +26,11 @@ export default function () {
           <label htmlFor="password" className="text-lg">Senha:</label>
           <div className="flex items-center justify-between border border-gray-400 rounded-md w-full overflow-hidden gap-1 outline-black outline-1 focus-within:outline">
             <Input className="focus:outline-none border-none p-2" type={showPassword ? "text" : "password"} id="password" placeholder="***********" tabIndex={2} onFocus={handlePasswordInputFocus} />
-            <button className="mr-1" tabIndex={-1}>
+            <button type="button" className="mr-1" tabIndex={-1} onClick={handleShowPassword}>
               {
                 showPassword
-                  ? <Eye size={24} onClick={handleShowPassword} />
-                  : <EyeOff size={24} onClick={handleShowPassword} />
+                  ? <Eye size={24} />
+                  : <EyeOff size={24} />
               }
             </button>
           </div>
@@ -41,7 +41,7 @@ export default function () {
         </div>
       </div>
 
-      <button className="w-full bg-zinc-900 text-white rounded-md p-2 hover:bg-zinc-700 transition focus:outline-zinc-400" tabIndex={3}>
+      <button type="submit" className="w-full bg-zinc-900 text-white rounded-md p-2 hover:bg-zinc-700 transition focus:outline-zinc-400" tabIndex={3}>
         Login
       </button>
     </form>
