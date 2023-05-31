@@ -1,6 +1,11 @@
 import LoginForm from "@/components/LoginForm";
 import { Github } from "lucide-react";
 
+export const metadata = {
+  title: "Faça login para continuar - AweNotes",
+  description: "Faça login para continuar no AweNotes.",
+}
+
 export default function Login() {
   return (
     <main className="flex h-screen items-center justify-center">
