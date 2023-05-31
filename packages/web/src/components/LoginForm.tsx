@@ -44,7 +44,7 @@ export default function () {
             />
             <button
               type="button"
-              className="mr-1"
+              className="mr-2"
               tabIndex={-1}
               onClick={handleShowPassword}
             >
