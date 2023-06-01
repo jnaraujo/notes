@@ -50,10 +50,10 @@ export default async function Note({
 
 
   return (
-    <main className="flex h-screen justify-center">
-      <article className="p-4 md:w-[600px] xl:w-[700px]">
+    <main className="flex justify-center">
+      <article className="p-4 max-w-screen-md prose md:prose-lg prose-zinc">
         <div className="border-b-2 border-gray-300 pb-2 mb-2">
-          <h1 className="font-black text-3xl text-zinc-600 leading-tight">
+          <h1 className="!mb-1">
             {note.title}
           </h1>
           <div className="flex items-center gap-2 justify-between mt-2">
@@ -65,13 +65,15 @@ export default async function Note({
             </strong>
           </div>
         </div>
-        {
-          note.content.split(/\\n/g).map((paragraph: string, index: number) => (
-            <p key={index} className="mt-4 text-zinc-500">
-              {paragraph}
-            </p>
-          ))
-        }
+        <div>
+          {
+            note.content.split(/\\n/g).map((paragraph: string, index: number) => (
+              <p key={index}>
+                {paragraph}
+              </p>
+            ))
+          }
+        </div>
       </article>
     </main>
   )
