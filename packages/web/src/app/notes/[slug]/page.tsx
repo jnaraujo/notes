@@ -15,6 +15,10 @@ async function fetchPost(id: string) {
       }
     });
 
+    if (!response.ok) {
+      return null;
+    }
+
     return response.json() as Promise<{
       id: string;
       title: string;
@@ -42,7 +46,6 @@ export default async function Note({
   params: { slug },
 }: NoteProps) {
   const note = await fetchPost(slug);
-
 
   if (!note) {
     return redirect("/notes");
