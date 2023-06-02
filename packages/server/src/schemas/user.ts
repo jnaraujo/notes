@@ -35,3 +35,9 @@ export const userRegisterSchema = z.object({
       message: "Password must have at least 8 characters",
     }),
 });
+
+export const usernameSchema = z.object({
+  username: z.string({
+    required_error: "Username is required",
+  }),
+});
