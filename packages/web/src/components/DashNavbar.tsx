@@ -23,7 +23,7 @@ export default function () {
     <nav className="flex h-full flex-col justify-center items-center gap-2">
       {
         MENU_LINKS.map(({ name, url, icon: Icon }) => (
-          <a id={name} href={url} className={
+          <a key={name} href={url} className={
             cx("flex w-11/12 items-center justify-center py-2 hover:bg-zinc-700/40 hover:text-purple-500 transition-colors duration-200 rounded-full", {
               "text-purple-500 bg-zinc-700/40": isOnPath(url),
             })
