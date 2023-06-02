@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Input from "./Input";
-import { Eye, EyeOff } from "lucide-react";
+import { AtSign, Eye, EyeOff } from "lucide-react";
 
 export default function () {
   const passwordInputRef = useRef<HTMLInputElement>(null);
@@ -35,13 +35,15 @@ export default function () {
             Nome de usuário:
           </label>
 
-          <div className="flex w-full items-center justify-between overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline">
-            <span className="text-gray-500 ml-2 text-lg">@</span>
+          <div className="flex w-full items-center justify-between overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline bg-white">
+            <span className="text-gray-500 ml-2 text-lg">
+              <AtSign size={18} />
+            </span>
             <Input
               type="text"
               id="username"
               className="border-none p-2 focus:outline-none"
-              placeholder="Ex: @johndoe"
+              placeholder="Ex: johndoe"
               maxLength={20}
               tabIndex={2}
             />
