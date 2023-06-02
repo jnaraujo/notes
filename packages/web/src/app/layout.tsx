@@ -1,4 +1,3 @@
-import GlobalStateManager from "@/components/GlobalStateManager";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -16,7 +15,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GlobalStateManager />
       <body className={inter.className + " bg-zinc-100 text-zinc-500"}>
         {children}
       </body>
