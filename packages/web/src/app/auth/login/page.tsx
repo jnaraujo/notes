@@ -1,5 +1,6 @@
 import LoginForm from "@/components/LoginForm";
 import { Github } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Faça login para continuar - AweNotes",
@@ -33,13 +34,13 @@ export default function Login() {
 
         <p className="text-center">
           Não tem uma conta?
-          <a
+          <Link
             className="font-medium text-purple-700 transition hover:text-purple-500"
-            href="#"
+            href="/auth/signup"
           >
             {" "}
             Crie uma agora!
-          </a>
+          </Link>
         </p>
       </div>
     </main>

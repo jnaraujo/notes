@@ -33,9 +33,9 @@ export default function () {
           <label htmlFor="password" className="text-lg">
             Senha:
           </label>
-          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline">
+          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline bg-white">
             <Input
-              className="border-none p-2 focus:outline-none"
+              className="border-none p-2 focus:outline-none bg-transparent"
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="***********"
