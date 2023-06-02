@@ -1,31 +1,20 @@
 "use client";
-import { useUserStore } from "@/stores/user";
-import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { fetchUser } from "@/lib/user";
+import { User, useUserStore } from "@/stores/user";
 
-export default function GlobalStateManager() {
+interface Props {
+  user: User | null;
+}
+export default function GlobalStateManager({ user }: Props) {
   const { setUser } = useUserStore();
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-
-    if (token) {
-      fetch(`${process.env.NEXT_PUBLIC_API}/users/me`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      }).then(async (response) => {
-
-        if (response.ok) {
-          const user = await response.json();
-          setUser(user);
-          return
-        } else {
-          Cookies.remove("token");
-        }
-      })
-    }
-  })
+  if (user) {
+    setUser(user);
+  } else {
+    fetchUser().then((user) => {
+      setUser(user);
+    });
+  }
 
   return null;
 }
