@@ -32,7 +32,7 @@ export default function Login() {
           </div>
         </div>
 
-        <p className="text-center">
+        <p className="text-center text-sm">
           Não tem uma conta?
           <Link
             className="font-medium text-purple-700 transition hover:text-purple-500"
