@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Feather } from "lucide-react";
+import { Home, Feather, Link } from "lucide-react";
 import clsx from "clsx";
 import { isOnPath } from "@/helpers/path";
 
@@ -21,7 +21,7 @@ export default function () {
   return (
     <nav className="flex h-full flex-col items-center justify-center gap-2">
       {MENU_LINKS.map(({ name, url, icon: Icon }) => (
-        <a
+        <Link
           key={name}
           href={url}
           className={clsx(
@@ -37,7 +37,7 @@ export default function () {
               {name}
             </span>
           </span>
-        </a>
+        </Link>
       ))}
     </nav>
   );
