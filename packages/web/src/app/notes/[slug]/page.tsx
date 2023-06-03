@@ -1,5 +1,6 @@
 import { dateToLocaleString } from "@/helpers/date";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
 async function fetchPost(id: string) {
   try {
     const response = await fetch(`${process.env.NOTES_API}/notes/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies().get("token")?.value}`,
+      },
       next: {
         revalidate: 60, // seconds
       },
@@ -51,7 +56,7 @@ export default async function Note({ params: { slug } }: NoteProps) {
 
   return (
     <main className="flex justify-center">
-      <article className="prose prose-zinc max-w-screen-md p-4 md:prose-lg">
+      <article className="prose prose-zinc w-[768px] max-w-screen-md p-4 md:prose-lg">
         <div className="mb-2 border-b-2 border-gray-300 pb-2">
           <h1 className="!mb-1">{note.title}</h1>
           <div className="mt-2 flex items-center justify-between gap-2">
