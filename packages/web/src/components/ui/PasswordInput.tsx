@@ -30,7 +30,9 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(({
 
   return (
     <div className="w-full">
-      <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline">
+      <div className={clsx("flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline", {
+        "border-red-500": error,
+      })}>
         <Input
           className={clsx(
             "border-none bg-transparent p-2 focus:outline-none",
