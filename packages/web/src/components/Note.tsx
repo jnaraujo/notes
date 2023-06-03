@@ -1,4 +1,5 @@
 import { views as format } from "@/helpers/format";
+import Link from "next/link";
 import { BarChart } from "lucide-react";
 
 interface NoteProps {
@@ -10,7 +11,7 @@ interface NoteProps {
 
 export default function Note({ title, description, views, url }: NoteProps) {
   return (
-    <a
+    <Link
       href={url}
       className="group mt-2 cursor-pointer rounded-md bg-zinc-200/50 p-4 shadow transition-all hover:bg-zinc-200 hover:shadow-md"
     >
@@ -26,6 +27,6 @@ export default function Note({ title, description, views, url }: NoteProps) {
         </div>
       </div>
       <p className="line-clamp-3 text-base text-zinc-500">{description}</p>
-    </a>
+    </Link>
   );
 }
