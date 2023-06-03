@@ -10,6 +10,7 @@ import ErrorLabel from "../ui/ErrorLabel";
 import Cookies from "js-cookie";
 import { errorToMessage, signup } from "./helper";
 import Label from "../ui/Label";
+import clsx from "clsx";
 export interface FormValues {
   name: string;
   username: string;
@@ -19,6 +20,7 @@ export interface FormValues {
 
 export default function () {
   const Router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState<string>();
   const {
     register,
@@ -28,6 +30,8 @@ export default function () {
   } = useForm<FormValues>();
 
   async function onSubmit(data: FormValues) {
+    setLoading(true);   
+
     try {
       const token = await signup(data);
 
@@ -44,6 +48,8 @@ export default function () {
       } else {
         setFormError(message.message);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -51,9 +57,7 @@ export default function () {
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <Label htmlFor="name">
-            Nome completo:
-          </Label>
+          <Label htmlFor="name">Nome completo:</Label>
           <Input
             type="text"
             id="name"
@@ -66,9 +70,7 @@ export default function () {
         </div>
 
         <div className="flex flex-col gap-1">
-          <Label htmlFor="username">
-            Nome de usuário:
-          </Label>
+          <Label htmlFor="username">Nome de usuário:</Label>
           <UsernameInput
             id="username"
             tabIndex={2}
@@ -80,9 +82,7 @@ export default function () {
         </div>
 
         <div className="flex flex-col gap-1">
-          <Label htmlFor="email">
-            Email:
-          </Label>
+          <Label htmlFor="email">Email:</Label>
           <Input
             type="email"
             id="email"
@@ -95,24 +95,29 @@ export default function () {
         </div>
 
         <div className="flex flex-col gap-1">
-          <Label htmlFor="password">
-            Senha:
-          </Label>
+          <Label htmlFor="password">Senha:</Label>
           <PasswordInput
             id="password"
+            minLength={8}
             required
             {...register("password")}
-            tabIndex={4}
             error={errors.password?.message}
-            minLength={8}
+            tabIndex={4}
           />
         </div>
       </div>
 
       {formError && <ErrorLabel className="mt-1" error={formError} />}
 
-      <Button type="submit" tabIndex={5}>
-        Criar sua conta!
+      <Button
+        type="submit"
+        tabIndex={5}
+        disabled={loading}
+        className={clsx({
+          "cursor-wait disabled:bg-zinc-500": loading,
+        })}
+      >
+        {loading ? "Carregando..." : "Criar sua conta"}
       </Button>
     </form>
   );

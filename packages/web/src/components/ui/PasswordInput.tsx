@@ -7,7 +7,7 @@ import ErrorLabel from "./ErrorLabel";
 import clsx from "clsx";
 
 const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, className, ...props }, ref) => {
+  ({ error, className, onChange, ...props }, ref) => {
     const passwordInputRef = useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -21,6 +21,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
     }
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+      onChange?.(event);
       setIsInputEmpty(event.target.value === "");
     }
 
@@ -39,12 +40,12 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
               "border-none bg-transparent p-2 focus:outline-none",
               className
             )}
-            onChange={handleInputChange}
             type={showPassword ? "text" : "password"}
             placeholder="***********"
-            onFocus={handlePasswordInputFocus}
             ref={ref}
             {...props}
+            onFocus={handlePasswordInputFocus}
+            onChange={handleInputChange}
           />
           <button
             type="button"
