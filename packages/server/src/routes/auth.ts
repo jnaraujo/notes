@@ -5,6 +5,7 @@ import {
   userLoginSchema,
   userRegisterSchema,
 } from "../schemas/user";
+import { AuthError } from "../constants/errors";
 
 export async function authRoutes(app: FastifyInstance) {
   app.post("/auth/signin", async (request, reply) => {
@@ -19,6 +20,7 @@ export async function authRoutes(app: FastifyInstance) {
     if (!user) {
       reply.status(401).send({
         error: "User not found",
+        code: AuthError.USER_NOT_FOUND,
       });
       return;
     }
@@ -28,6 +30,7 @@ export async function authRoutes(app: FastifyInstance) {
     if (!doesPasswordMatch) {
       reply.status(401).send({
         error: "Invalid password",
+        code: AuthError.INVALID_PASSWORD,
       });
       return;
     }
@@ -58,6 +61,7 @@ export async function authRoutes(app: FastifyInstance) {
     if (usernameAlreadyExists) {
       reply.status(400).send({
         error: "Username already exists",
+        code: AuthError.USERNAME_ALREADY_EXISTS,
       });
     }
 
@@ -68,6 +72,7 @@ export async function authRoutes(app: FastifyInstance) {
     if (emailAlreadyExists) {
       reply.status(400).send({
         error: "Email already exists",
+        code: AuthError.EMAIL_ALREADY_EXISTS,
       });
     }
 
