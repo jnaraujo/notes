@@ -1,7 +1,7 @@
 "use client";
 
 import { Home, Feather } from "lucide-react";
-import cx from "classnames";
+import clsx from "clsx";
 import { isOnPath } from "@/helpers/path";
 
 const MENU_LINKS = [
@@ -24,7 +24,7 @@ export default function () {
         <a
           key={name}
           href={url}
-          className={cx(
+          className={clsx(
             "flex w-11/12 items-center justify-center rounded-full py-2 transition-colors duration-200 hover:bg-zinc-700/40 hover:text-purple-500",
             {
               "bg-zinc-700/40 text-purple-500": isOnPath(url),

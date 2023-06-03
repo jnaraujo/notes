@@ -1,4 +1,4 @@
-import cx from "classnames";
+import clsx from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({ children, className, ...props }: ButtonProps) {
   return (
     <button
-      className={cx(
+      className={clsx(
         "w-full rounded-md bg-zinc-900 p-2 text-white transition hover:bg-zinc-700 focus:outline-zinc-400",
         className
       )}
