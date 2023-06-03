@@ -36,7 +36,7 @@ export default function Login() {
           Não tem uma conta?
           <Link
             className="font-medium text-purple-700 transition hover:text-purple-500"
-            href="/auth/signup"
+            href="/signup"
           >
             {" "}
             Crie uma agora!
