@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
 import { AtSign, Eye, EyeOff } from "lucide-react";
+import Button from "./ui/Button";
 
 export default function () {
   const passwordInputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +67,7 @@ export default function () {
           <label htmlFor="password" className="text-lg">
             Senha:
           </label>
-          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline">
+          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline bg-white">
             <Input
               className="border-none p-2 focus:outline-none"
               type={showPassword ? "text" : "password"}
@@ -87,13 +88,13 @@ export default function () {
         </div>
       </div>
 
-      <button
+      <Button
         type="submit"
-        className="w-full rounded-md bg-zinc-900 p-2 text-white transition hover:bg-zinc-700 focus:outline-zinc-400"
         tabIndex={5}
       >
         Criar sua conta!
-      </button>
+
+      </Button>
     </form>
   );
 }

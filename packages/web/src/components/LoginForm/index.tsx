@@ -5,6 +5,7 @@ import PasswordInput from "../PasswordInput";
 import Cookie from "js-cookie";
 import { FormEvent, useState } from "react";
 import { login } from "./helper";
+import Button from "../ui/Button";
 
 export default function () {
   const Router = useRouter();
@@ -68,13 +69,12 @@ export default function () {
         </p>
       )}
 
-      <button
+      <Button
         type="submit"
-        className="w-full rounded-md bg-zinc-900 p-2 text-white transition hover:bg-zinc-700 focus:outline-zinc-400"
         tabIndex={3}
       >
         Login
-      </button>
+      </Button>
     </form>
   );
 }
