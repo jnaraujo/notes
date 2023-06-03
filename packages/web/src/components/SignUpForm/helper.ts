@@ -18,7 +18,7 @@ export async function signup(data: FormValues) {
 }
 
 export function errorToMessage(error: any) {
-  switch (error.type) {
+  switch (error.code) {
     case "INVALID_EMAIL":
       return {
         field: "email",
