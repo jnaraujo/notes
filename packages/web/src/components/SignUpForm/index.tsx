@@ -10,7 +10,7 @@ import ErrorLabel from "../ui/ErrorLabel";
 import Cookies from "js-cookie";
 import { errorToMessage, signup } from "./helper";
 import Label from "../ui/Label";
-import clsx from "clsx";
+
 export interface FormValues {
   name: string;
   username: string;
@@ -112,12 +112,9 @@ export default function () {
       <Button
         type="submit"
         tabIndex={5}
-        disabled={loading}
-        className={clsx({
-          "cursor-wait disabled:bg-zinc-500": loading,
-        })}
+        isLoading={loading}
       >
-        {loading ? "Carregando..." : "Criar sua conta"}
+        Criar sua conta
       </Button>
     </form>
   );

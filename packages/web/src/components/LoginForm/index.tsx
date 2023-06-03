@@ -7,7 +7,6 @@ import { FormEvent, useState } from "react";
 import { login } from "./helper";
 import Button from "../ui/Button";
 import Label from "../ui/Label";
-import clsx from "clsx";
 
 export default function () {
   const Router = useRouter();
@@ -70,12 +69,9 @@ export default function () {
       <Button
         type="submit"
         tabIndex={3}
-        disabled={loading}
-        className={clsx({
-          "cursor-wait disabled:bg-zinc-500": loading,
-        })}
+        isLoading={loading}
       >
-        {loading ? "Carregando..." : "Login"}
+        Login
       </Button>
     </form>
   );
