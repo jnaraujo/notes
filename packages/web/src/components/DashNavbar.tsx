@@ -1,8 +1,9 @@
 "use client";
 
-import { Home, Feather, Link } from "lucide-react";
+import { Home, Feather } from "lucide-react";
 import clsx from "clsx";
 import { isOnPath } from "@/helpers/path";
+import Link from "next/link";
 
 const MENU_LINKS = [
   {
