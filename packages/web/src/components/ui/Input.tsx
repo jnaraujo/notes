@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import { AlertCircle } from "lucide-react";
+import ErrorLabel from "./ErrorLabel";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
@@ -15,11 +16,7 @@ export default function ({ className, error, ...props }: InputProps) {
         )}
         {...props}
       />
-      {error && (
-        <span className="mt-1 flex items-center gap-1 text-red-500">
-          <AlertCircle size={16} /> Email invalido!
-        </span>
-      )}
+      {error && <ErrorLabel error={error} />}
     </div>
   );
 }
