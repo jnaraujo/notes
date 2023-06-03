@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Input from "./Input";
+import Input from "./ui/Input";
 import { Eye, EyeOff } from "lucide-react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement>;

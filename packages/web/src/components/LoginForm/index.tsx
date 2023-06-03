@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Input from "../Input";
+import Input from "../ui/Input";
 import PasswordInput from "../PasswordInput";
 import Cookie from "js-cookie";
 import { FormEvent, useState } from "react";
