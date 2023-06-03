@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Faça login para continuar - AweNotes",
   description: "Faça login para continuar no AweNotes.",
-}
+};
 
 export default function Login() {
   return (

@@ -3,12 +3,10 @@ import DashNavbar from "@/components/DashNavbar";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className="flex h-screen">
-      <aside className="group w-16 hover:w-48 bg-zinc-800 flex-shrink-0 shadow-lg z-10 transition-all duration-100">
+      <aside className="group z-10 w-16 flex-shrink-0 bg-zinc-800 shadow-lg transition-all duration-100 hover:w-48">
         <DashNavbar />
       </aside>
-      <section className="flex-1 p-4 md:p-8">
-        {children}
-      </section>
-    </main >
-  )
+      <section className="flex-1 p-4 md:p-8">{children}</section>
+    </main>
+  );
 }

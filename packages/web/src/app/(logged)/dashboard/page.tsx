@@ -2,7 +2,6 @@ import LatestNotes from "@/components/Widgets/LatestNotes";
 import QuickNoteWidget from "@/components/Widgets/QuickNoteWidget";
 
 export default async function Dashboard() {
-
   return (
     <>
       <div className="space-y-1">
@@ -11,10 +10,10 @@ export default async function Dashboard() {
         </h1>
       </div>
 
-      <div className="flex gap-8 flex-col md:flex-row justify-between">
+      <div className="flex flex-col justify-between gap-8 md:flex-row">
         <LatestNotes />
         <QuickNoteWidget />
       </div>
     </>
-  )
+  );
 }

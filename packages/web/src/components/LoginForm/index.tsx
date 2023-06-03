@@ -63,16 +63,9 @@ export default function () {
       </div>
 
       {/* error */}
-      {error && (
-        <p className="text-red-500 text-sm">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <Button
-        type="submit"
-        tabIndex={3}
-      >
+      <Button type="submit" tabIndex={3}>
         Login
       </Button>
     </form>

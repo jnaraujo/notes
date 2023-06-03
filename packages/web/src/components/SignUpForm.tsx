@@ -36,8 +36,8 @@ export default function () {
             Nome de usuário:
           </label>
 
-          <div className="flex w-full items-center justify-between overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline bg-white">
-            <span className="text-gray-500 ml-2 text-lg">
+          <div className="flex w-full items-center justify-between overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline">
+            <span className="ml-2 text-lg text-gray-500">
               <AtSign size={18} />
             </span>
             <Input
@@ -67,7 +67,7 @@ export default function () {
           <label htmlFor="password" className="text-lg">
             Senha:
           </label>
-          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 outline-1 outline-black focus-within:outline bg-white">
+          <div className="flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline">
             <Input
               className="border-none p-2 focus:outline-none"
               type={showPassword ? "text" : "password"}
@@ -88,12 +88,8 @@ export default function () {
         </div>
       </div>
 
-      <Button
-        type="submit"
-        tabIndex={5}
-      >
+      <Button type="submit" tabIndex={5}>
         Criar sua conta!
-
       </Button>
     </form>
   );

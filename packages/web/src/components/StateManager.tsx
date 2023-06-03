@@ -12,7 +12,6 @@ export default function StateManager({ user }: Props) {
     if (user) {
       setUser(user);
     }
-
   }, [user]);
 
   return null;

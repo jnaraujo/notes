@@ -3,7 +3,7 @@ import SignUpForm from "@/components/SignUpForm";
 export const metadata = {
   title: "Crie uma nova conta - AweNotes",
   description: "Crie uma nova conta no AweNotes.",
-}
+};
 
 export default function SignUp() {
   return (
