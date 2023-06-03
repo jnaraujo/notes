@@ -44,7 +44,12 @@ export async function notesRoutes(app: FastifyInstance) {
       },
     });
 
-    reply.status(200).send(notes);
+    reply.status(200).send(
+      notes.map(({ content, ...rest }) => ({
+        content: truncate(content, 255),
+        ...rest,
+      }))
+    );
   });
 
   app.get("/notes/:id", async (request, reply) => {
