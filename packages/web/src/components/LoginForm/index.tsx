@@ -6,6 +6,7 @@ import Cookie from "js-cookie";
 import { FormEvent, useState } from "react";
 import { login } from "./helper";
 import Button from "../ui/Button";
+import Label from "../ui/Label";
 
 export default function () {
   const Router = useRouter();
@@ -33,23 +34,19 @@ export default function () {
   return (
     <form className="flex flex-col gap-4" onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-lg">
-            Email:
-          </label>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="email">E-mail:</Label>
           <Input
             type="email"
             id="email"
             name="email"
             required
-            placeholder="Ex: john@example.com"
+            placeholder="Ex: joao@exemplo.com"
             tabIndex={1}
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="text-lg">
-            Senha:
-          </label>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="password">Senha:</Label>
           <PasswordInput id="password" name="password" required tabIndex={2} />
 
           <a

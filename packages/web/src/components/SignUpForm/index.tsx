@@ -9,6 +9,7 @@ import { useState } from "react";
 import ErrorLabel from "../ui/ErrorLabel";
 import Cookies from "js-cookie";
 import { errorToMessage, signup } from "./helper";
+import Label from "../ui/Label";
 export interface FormValues {
   name: string;
   username: string;
@@ -49,14 +50,14 @@ export default function () {
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-lg">
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="name">
             Nome completo:
-          </label>
+          </Label>
           <Input
             type="text"
             id="name"
-            placeholder="Ex: John Doe"
+            placeholder="Ex: João da Silva"
             tabIndex={1}
             required
             {...register("name")}
@@ -64,27 +65,28 @@ export default function () {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="username" className="text-lg">
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="username">
             Nome de usuário:
-          </label>
+          </Label>
           <UsernameInput
             id="username"
             tabIndex={2}
             required
+            placeholder="Ex: joao.silva"
             {...register("username")}
             error={errors.username?.message}
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-lg">
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="email">
             Email:
-          </label>
+          </Label>
           <Input
             type="email"
             id="email"
-            placeholder="Ex: john@example.com"
+            placeholder="Ex: joao@exemplo.com"
             tabIndex={3}
             required
             {...register("email")}
@@ -92,10 +94,10 @@ export default function () {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="text-lg">
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="password">
             Senha:
-          </label>
+          </Label>
           <PasswordInput
             id="password"
             required

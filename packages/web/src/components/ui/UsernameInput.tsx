@@ -21,7 +21,6 @@ const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
           </span>
           <Input
             type="text"
-            placeholder="Ex: johndoe"
             ref={ref}
             maxLength={25}
             min={3}
