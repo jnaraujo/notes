@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 import {
   userLoginSchema,
   userRegisterSchema,
-  usernameSchema,
 } from "../schemas/user";
 
 export async function authRoutes(app: FastifyInstance) {
@@ -96,29 +95,5 @@ export async function authRoutes(app: FastifyInstance) {
     );
 
     reply.status(201).send(token);
-  });
-
-  app.get("/auth/username/:username", async (request, reply) => {
-    const { username } = usernameSchema.parse(request.params);
-
-    const doesUsernameExist = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-      select: {
-        id: true,
-      },
-    });
-
-    if (!doesUsernameExist) {
-      reply.status(404).send({
-        error: "Username not found",
-      });
-      return;
-    }
-
-    reply.status(200).send({
-      exists: true,
-    });
   });
 }
