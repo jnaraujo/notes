@@ -7,13 +7,16 @@ import { FormEvent, useState } from "react";
 import { login } from "./helper";
 import Button from "../ui/Button";
 import Label from "../ui/Label";
+import clsx from "clsx";
 
 export default function () {
   const Router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setLoading(true);
     setError(null);
 
     const data = new FormData(event.currentTarget);
@@ -28,6 +31,8 @@ export default function () {
       Router.push("/dashboard");
     } catch (error) {
       setError("Usuário ou senha incorretos.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -62,8 +67,15 @@ export default function () {
       {/* error */}
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <Button type="submit" tabIndex={3}>
-        Login
+      <Button
+        type="submit"
+        tabIndex={3}
+        disabled={loading}
+        className={clsx({
+          "cursor-wait disabled:bg-zinc-500": loading,
+        })}
+      >
+        {loading ? "Carregando..." : "Login"}
       </Button>
     </form>
   );
