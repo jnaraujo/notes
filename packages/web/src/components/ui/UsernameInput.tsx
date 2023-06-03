@@ -21,6 +21,7 @@ const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
             placeholder="Ex: johndoe"
             ref={ref}
             maxLength={25}
+            min={3}
             className={clsx("border-none p-2 focus:outline-none", className)}
             {...props}
           />
