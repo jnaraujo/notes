@@ -8,7 +8,7 @@ export interface InputProps
 
 export default function ({ className, error, ...props }: InputProps) {
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="w-full">
       <input
         className={clsx(
           "w-full rounded-md border border-gray-400 p-2 text-sm outline-1 outline-black",
@@ -16,7 +16,7 @@ export default function ({ className, error, ...props }: InputProps) {
         )}
         {...props}
       />
-      {error && <ErrorLabel error={error} />}
+      {error && <ErrorLabel className="mt-1" error={error} />}
     </div>
   );
 }
