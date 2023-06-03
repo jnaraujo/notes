@@ -4,5 +4,5 @@
     "es6": true,
     "node": true
   },
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "tailwindConfig": "./tailwind.config.js"
 }
