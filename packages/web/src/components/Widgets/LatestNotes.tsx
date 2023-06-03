@@ -3,7 +3,7 @@ import Note from "../Note";
 export default function LatestNotes() {
   return (
     <div className="md:w-3/5">
-      <h2 className="mt-6 text-xl font-bold text-zinc-600">
+      <h2 className="text-xl font-bold text-zinc-500 md:text-2xl">
         Suas últimas notas:
       </h2>
       <div className="mt-2 flex flex-col gap-2">

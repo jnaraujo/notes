@@ -5,12 +5,12 @@ export default async function Dashboard() {
   return (
     <>
       <div className="space-y-1">
-        <h1 className="text-lg font-extrabold text-zinc-500">
+        <h1 className="md:text-lg font-semibold text-zinc-600">
           Bem-vindo, Usuário!
         </h1>
       </div>
 
-      <div className="flex flex-col justify-between gap-8 md:flex-row">
+      <div className="mt-4 flex flex-col justify-between gap-8 md:flex-row">
         <LatestNotes />
         <QuickNoteWidget />
       </div>
