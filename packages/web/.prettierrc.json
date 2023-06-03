@@ -1,8 +1,12 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
-  "env": {
-    "es6": true,
-    "node": true
-  },
-  "tailwindConfig": "./tailwind.config.js"
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindConfig": "./tailwind.config.js",
+  "tailwindFunctions": ["clsx"],
+  "pluginSearchDirs": false,
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"]
+    }
+  ]
 }
