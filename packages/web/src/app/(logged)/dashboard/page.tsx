@@ -1,4 +1,5 @@
-import Note from "@/components/Note";
+import LatestNotes from "@/components/Widgets/LatestNotes";
+import QuickNoteWidget from "@/components/Widgets/QuickNoteWidget";
 
 export default async function Dashboard() {
 
@@ -10,15 +11,9 @@ export default async function Dashboard() {
         </h1>
       </div>
 
-      <h2 className="text-xl font-bold text-zinc-600 mt-6">
-        Suas últimas notas:
-      </h2>
-      <div className="flex flex-col gap-2 mt-2">
-        <Note title="Como eu criei um site que gera sites?" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        voluptatum, quibusdam, quia, quos voluptates voluptate quod
-        voluptatibus quas doloribus quidem voluptatem. Quisquam voluptatum,
-        quibusdam, quia, quos voluptates voluptate quod voluptatibus quas
-        doloribus quidem voluptatem." views={900000} url="#" />
+      <div className="flex gap-8 flex-col md:flex-row justify-between">
+        <LatestNotes />
+        <QuickNoteWidget />
       </div>
     </>
   )
