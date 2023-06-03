@@ -5,7 +5,7 @@ import ErrorLabel from "./ErrorLabel";
 import { forwardRef } from "react";
 
 const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, error }, ref) => {
+  ({ className, error, ...props }, ref) => {
     return (
       <div>
         <div className="flex w-full items-center overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline">
@@ -14,10 +14,11 @@ const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
           </span>
           <Input
             type="text"
-            className={clsx("border-none p-2 focus:outline-none", className)}
             placeholder="Ex: johndoe"
             ref={ref}
             maxLength={25}
+            className={clsx("border-none p-2 focus:outline-none", className)}
+            {...props}
           />
         </div>
         {error && <ErrorLabel className="mt-1" error={error} />}
