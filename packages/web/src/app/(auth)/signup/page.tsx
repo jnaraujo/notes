@@ -1,4 +1,5 @@
 import SignUpForm from "@/components/SignUpForm";
+import Link from "next/link";
 
 export const metadata = {
   title: "Crie uma nova conta - AweNotes",
@@ -14,6 +15,17 @@ export default function SignUp() {
             Crie uma nova conta 👌
           </h1>
           <SignUpForm />
+
+          <p className="text-center text-sm">
+            Já tem uma conta?
+            <Link
+              className="font-medium text-purple-700 transition hover:text-purple-500"
+              href="/signup"
+            >
+              {" "}
+              Faça login!
+            </Link>
+          </p>
         </div>
       </div>
     </main>
