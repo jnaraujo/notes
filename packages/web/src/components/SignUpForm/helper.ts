@@ -46,7 +46,7 @@ export function errorToMessage(error: any) {
       };
     default:
       return {
-        message: "Ocorreu um erro ao criar sua conta."
+        message: "Ocorreu um erro ao criar sua conta.",
       };
   }
 }

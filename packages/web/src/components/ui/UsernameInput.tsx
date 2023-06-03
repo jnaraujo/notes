@@ -8,11 +8,14 @@ const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
   ({ className, error, ...props }, ref) => {
     return (
       <div>
-        <div className={
-          clsx("flex w-full items-center overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline", {
-            "border-red-500": error,
-          })
-        }>
+        <div
+          className={clsx(
+            "flex w-full items-center overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline",
+            {
+              "border-red-500": error,
+            }
+          )}
+        >
           <span className="ml-2 text-lg text-gray-500">
             <AtSign size={18} />
           </span>

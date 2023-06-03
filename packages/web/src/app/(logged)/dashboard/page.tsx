@@ -5,7 +5,7 @@ export default async function Dashboard() {
   return (
     <>
       <div className="space-y-1">
-        <h1 className="md:text-lg font-semibold text-zinc-600">
+        <h1 className="font-semibold text-zinc-600 md:text-lg">
           Bem-vindo, Usuário!
         </h1>
       </div>
