@@ -1,16 +1,14 @@
 "use client";
 import Input from "../ui/Input";
-import useDebounce from "@/helpers/debounce";
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import PasswordInput from "../ui/PasswordInput";
 import { useRouter } from "next/navigation";
 import UsernameInput from "../ui/UsernameInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ErrorLabel from "../ui/ErrorLabel";
 import Cookies from "js-cookie";
-import { signup } from "./helper";
-
+import { errorToMessage, signup } from "./helper";
 export interface FormValues {
   name: string;
   username: string;
@@ -26,31 +24,25 @@ export default function () {
     handleSubmit,
     formState: { errors },
     setError,
-    watch,
   } = useForm<FormValues>();
 
   async function onSubmit(data: FormValues) {
     try {
-      const response = await signup(data);
+      const token = await signup(data);
 
-      Cookies.set("token", await response.text());
+      Cookies.set("token", token);
       Router.push("/dashboard");
     } catch (error: any) {
-      if(error?.code === "EMAIL_ALREADY_IN_USE") {
-        setError("email", {
-          type: "manual",
-          message: "Esse email já está em uso.",
-        });
-      }
+      const message = errorToMessage(error);
 
-      if(error?.code === "USERNAME_ALREADY_IN_USE") {
-        setError("username", {
+      if (message.field) {
+        setError(message.field as any, {
           type: "manual",
-          message: "Esse nome de usuário já está em uso.",
+          message: message.message,
         });
+      } else {
+        setFormError(message.message);
       }
-
-      setFormError("Ocorreu um erro ao criar sua conta.");
     }
   }
 
@@ -115,9 +107,7 @@ export default function () {
         </div>
       </div>
 
-      {formError && (
-        <ErrorLabel className="mt-1" error={formError} />
-      )}
+      {formError && <ErrorLabel className="mt-1" error={formError} />}
 
       <Button type="submit" tabIndex={5}>
         Criar sua conta!
