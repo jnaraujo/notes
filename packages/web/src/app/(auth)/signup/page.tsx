@@ -20,7 +20,7 @@ export default function SignUp() {
             Já tem uma conta?
             <Link
               className="font-medium text-purple-700 transition hover:text-purple-500"
-              href="/signup"
+              href="/login"
             >
               {" "}
               Faça login!
