@@ -10,7 +10,17 @@ export default async function Layout({
   const isAuthenticated = token;
 
   if (!isAuthenticated) {
-    redirect("/auth/login");
+    redirect("/login");
+  }
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    redirect("/login");
   }
 
   return <>{children}</>;
