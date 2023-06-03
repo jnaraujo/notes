@@ -1,16 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import Input, { InputProps } from "./Input";
 import { Eye, EyeOff } from "lucide-react";
 import ErrorLabel from "./ErrorLabel";
 import clsx from "clsx";
 
-export default function PasswordInput({
+
+const PasswordInput = forwardRef<HTMLInputElement, InputProps>(({
   error,
   className,
   ...props
-}: InputProps) {
+}, ref) => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -39,6 +40,7 @@ export default function PasswordInput({
           type={showPassword ? "text" : "password"}
           placeholder="***********"
           onFocus={handlePasswordInputFocus}
+          ref={ref}
           {...props}
         />
         <button
@@ -55,4 +57,6 @@ export default function PasswordInput({
       {error && <ErrorLabel className="mt-1" error={error} />}
     </div>
   );
-}
+});
+
+export default PasswordInput;
