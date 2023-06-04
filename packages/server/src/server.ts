@@ -27,5 +27,5 @@ app
     port: PORT as number,
   })
   .then(() => {
-    console.log("Server is running on port 3333");
+    console.log(`Server is running on port ${PORT}`);
   });
