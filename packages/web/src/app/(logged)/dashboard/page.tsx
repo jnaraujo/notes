@@ -12,7 +12,7 @@ export default async function Dashboard() {
   await queryClient.prefetchQuery(["latest-notes"], () =>
     fetchNotes({
       limit: 5,
-      token: cookies().get("token")?.value,
+      token: cookies().get("token")?.value as string,
     })
   );
   const dehydratedState = dehydrate(queryClient);

@@ -1,14 +1,12 @@
-import Cookies from "js-cookie";
 import { LatestNote } from "../../@types/note";
 
 export async function fetchNotes({
   token,
   limit = 5,
 }: {
-  token?: string;
+  token: string;
   limit?: number;
 }): Promise<LatestNote[]> {
-  token = token || Cookies.get("token");
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {

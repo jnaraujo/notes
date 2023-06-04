@@ -3,11 +3,13 @@
 import { useQuery } from "@tanstack/react-query";
 import Note from "../Note";
 import { fetchNotes } from "@/lib/notes";
+import Cookies from "js-cookie";
 
 export default function LatestNotes() {
   const { data, isLoading } = useQuery({
     queryKey: ["latest-notes"],
     queryFn: () => fetchNotes({
+      token: Cookies.get("token") as string,
       limit: 5,
     }),
   });
