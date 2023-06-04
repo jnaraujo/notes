@@ -21,10 +21,12 @@ app.register(authRoutes);
 app.register(notesRoutes);
 
 const PORT = process.env.PORT || 3333;
+const HOST = process.env.HOST || "0.0.0.0";
 
 app
   .listen({
     port: PORT as number,
+    host: HOST
   })
   .then(() => {
     console.log(`Server is running on port ${PORT}`);
