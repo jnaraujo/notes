@@ -21,7 +21,7 @@ app.register(authRoutes);
 app.register(notesRoutes);
 
 const PORT = process.env.PORT || 3333;
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "localhost";
 
 app
   .listen({
