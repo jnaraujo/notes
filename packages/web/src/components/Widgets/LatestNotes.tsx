@@ -1,19 +1,19 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import Note from "../Note";
+import { fetchNotes } from "@/lib/notes";
 
-interface Note {
-  title: string;
-  description: string;
-  views: number;
-  url: string;
-}
+export default function LatestNotes() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["latest-notes"],
+    queryFn: () => fetchNotes({
+      limit: 5,
+    }),
+  });
 
-interface LatestNotesProps {
-  notes: Note[];
-}
-
-export default function LatestNotes({
-  notes
-}: LatestNotesProps) {
+  if(!data || isLoading) return <p>Carregando...</p>;
+  
   return (
     <div className="md:w-3/5">
       <h2 className="text-xl font-bold text-zinc-500 md:text-2xl">
@@ -21,7 +21,7 @@ export default function LatestNotes({
       </h2>
       <div className="mt-2 flex flex-col gap-2">
         {
-          notes.map((note, index) => (
+          data.map((note, index) => (
             <Note
               key={index}
               title={note.title}

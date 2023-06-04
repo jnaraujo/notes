@@ -5,8 +5,13 @@ import TextAreaInput from "../ui/TextAreaInput";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import ErrorLabel from "../ui/ErrorLabel";
+import { useQuery } from "@tanstack/react-query";
 
 export default function QuickNoteWidget() {
+  const { refetch } = useQuery({
+    queryKey: ["latest-notes"],
+  });
+
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -37,7 +42,7 @@ export default function QuickNoteWidget() {
     }
 
     setSuccess("Nota criada com sucesso!");
-    console.log(await response.json());
+    refetch();
   }
   return (
     <div className="flex flex-1 flex-col gap-3 rounded-md bg-zinc-200/50 p-6 shadow-md md:max-w-md">

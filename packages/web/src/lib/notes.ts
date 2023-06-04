@@ -1,14 +1,25 @@
-import { cookies } from "next/headers";
+import Cookies from "js-cookie";
+import { LatestNote } from "../../@types/note";
 
-export async function fetchNotes(limit: number = 10) {
+export async function fetchNotes({
+  token,
+  limit = 5,
+}: {
+  token?: string;
+  limit?: number;
+}): Promise<LatestNote[]> {
+  token = token || Cookies.get("token");
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {
-      Authorization: `Bearer ${cookies().get("token")?.value}`,
+      Authorization: `Bearer ${token}`,
     },
     cache: "no-cache",
   });
 
-  const notes = (await response.json()).map((note: any) => ({
+  const json = await response.json();
+
+  const notes = json.map((note: any) => ({
     title: note.title,
     description: note.content,
     views: note.views,
