@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
-    "build": "tsup ./src/ --format cjs --minify --dts-resolve",
+    "build": "tsup ./src/ --minify",
     "start": "node ./dist/server.js"
   },
   "devDependencies": {
