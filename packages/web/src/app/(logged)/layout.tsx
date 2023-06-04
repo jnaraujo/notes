@@ -13,16 +13,22 @@ export default async function Layout({
     redirect("/login");
   }
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users/me`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
+  try {    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+    
+  
+    if (!response.ok) {
+      redirect("/login");
+    }
+  
+  } catch (error) {
     redirect("/login");
   }
-
 
   return <>{children}</>;
 }
