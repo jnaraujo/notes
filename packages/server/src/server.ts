@@ -20,9 +20,11 @@ app.register(userRoutes);
 app.register(authRoutes);
 app.register(notesRoutes);
 
+const PORT = process.env.PORT || 3333;
+
 app
   .listen({
-    port: 3333,
+    port: PORT as number,
   })
   .then(() => {
     console.log("Server is running on port 3333");
