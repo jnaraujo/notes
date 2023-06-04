@@ -42,6 +42,9 @@ export async function notesRoutes(app: FastifyInstance) {
       where: {
         authorId: request.user.sub,
       },
+      orderBy: {
+        createdAt: "desc",
+      }
     });
 
     reply.status(200).send(
