@@ -22,6 +22,9 @@
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@fastify/jwt": "^6.7.1",
