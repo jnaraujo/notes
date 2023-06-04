@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch ./src/server.ts"
+    "dev": "tsx watch ./src/server.ts",
+    "build": "tsup ./src/ --format cjs --minify --dts-resolve",
+    "start": "node ./dist/server.js"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -6,7 +6,13 @@
   "private": true,
   "scripts": {
     "server-dev": "yarn workspace @notes/server dev",
+    "server-build": "yarn workspace @notes/server build",
+    "server-start": "yarn workspace @notes/server start",
+
     "web-dev": "yarn workspace @notes/web dev",
+    "web-build": "yarn workspace @notes/web build",
+    "web-start": "yarn workspace @notes/web start",
+
     "format": "yarn workspace @notes/web format && yarn workspace @notes/server format"
   },
   "workspaces": {
