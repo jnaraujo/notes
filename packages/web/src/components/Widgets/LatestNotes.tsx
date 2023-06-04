@@ -15,7 +15,7 @@ export default function LatestNotes() {
   if(!data || isLoading) return <p>Carregando...</p>;
   
   return (
-    <div className="md:w-3/5">
+    <div className="w-full">
       <h2 className="text-xl font-bold text-zinc-500 md:text-2xl">
         Suas últimas notas:
       </h2>
