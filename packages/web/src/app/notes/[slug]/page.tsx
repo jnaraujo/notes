@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 async function fetchPost(id: string) {
   try {
-    const response = await fetch(`${process.env.NOTES_API}/notes/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${cookies().get("token")?.value}`,
