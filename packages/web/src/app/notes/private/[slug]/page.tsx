@@ -1,21 +1,22 @@
 import { dateToLocaleString } from "@/helpers/date";
-import { Metadata } from "next";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-export const revalidate = 120; // 2 minutes
 
 async function fetchPost(id: string) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes/${id}`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${cookies().get("token")?.value}`,
       },
+      cache: "no-store"
     });
+
     if (!response.ok) {
       return null;
     }
 
-    const note = (await response.json()) as Promise<{
+    return response.json() as Promise<{
       id: string;
       title: string;
       content: string;
@@ -27,8 +28,6 @@ async function fetchPost(id: string) {
         name: string;
       };
     }>;
-
-    return note;
   } catch (error) {
     return null;
   }
@@ -42,9 +41,9 @@ interface NoteProps {
 
 export default async function Note({ params: { slug } }: NoteProps) {
   const note = await fetchPost(slug);
-
+  
   if (!note) {
-    return redirect("/notes");
+    return redirect("/dashboard");
   }
 
   return (
@@ -81,10 +80,10 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params } :Props ) {
   const note = await fetchPost(params.slug);
   return {
     title: note?.title + " | Notes",
     description: note?.content,
   };
-}
+} 
