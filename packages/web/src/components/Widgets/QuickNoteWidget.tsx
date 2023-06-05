@@ -23,7 +23,9 @@ export default function QuickNoteWidget() {
     setSuccess(null);
 
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+
+    let data = Object.fromEntries(formData.entries()) as any;
+    data.isPublic = false;
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
       method: "POST",
@@ -45,7 +47,7 @@ export default function QuickNoteWidget() {
     refetch();
   }
   return (
-    <div className="flex w-full h-fit flex-col gap-3 rounded-md bg-zinc-200/50 p-6 shadow-md md:max-w-md">
+    <div className="flex h-fit w-full flex-col gap-3 rounded-md bg-zinc-200/50 p-6 shadow-md md:max-w-md">
       <h2 className="text-xl font-bold text-zinc-600">Crie uma nota rápida:</h2>
       <form className="space-y-2" onSubmit={handleSubmit}>
         <Input
@@ -63,11 +65,11 @@ export default function QuickNoteWidget() {
           className="h-32 text-sm placeholder:text-sm"
         />
 
-        <input name="isPublic" type="hidden" value="false" />
-
         {error && <ErrorLabel error={error} />}
 
-        {success && <p className="text-green-500 font-semibold text-sm">{success}</p>}
+        {success && (
+          <p className="text-sm font-semibold text-green-500">{success}</p>
+        )}
 
         <Button isLoading={loading} type="submit">
           Criar nota privada
