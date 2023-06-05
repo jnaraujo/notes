@@ -7,11 +7,11 @@ interface User {
   avatarUrl: string;
 }
 
-export function getUser(): User {
+export function getUser(): User | null {
   const token = cookies().get("token")?.value;
 
   if (!token) {
-    throw new Error("Unauthenticated.");
+    return null;
   }
 
   const user: User = decode(token);

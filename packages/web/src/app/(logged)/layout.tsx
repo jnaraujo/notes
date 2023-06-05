@@ -6,27 +6,9 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const token = cookies().get("token")?.value;
-  const isAuthenticated = token;
+  const isAuthenticated = cookies().has("token");
 
   if (!isAuthenticated) {
-    redirect("/login");
-  }
-
-  try {    
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-store",
-    });
-    
-  
-    if (!response.ok) {
-      redirect("/login");
-    }
-  
-  } catch (error) {
     redirect("/login");
   }
 
