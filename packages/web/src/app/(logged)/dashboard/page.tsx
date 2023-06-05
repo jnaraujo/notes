@@ -1,11 +1,11 @@
 import LatestNotes from "@/components/Widgets/LatestNotes";
 import QuickNoteWidget from "@/components/Widgets/QuickNoteWidget";
 import getQueryClient from "@/lib/query/getQueryClient";
-import { fetchNotes } from "@/lib/server/notes";
 import { dehydrate } from "@tanstack/react-query";
 import Hydrate from "@/lib/query/hydrate.client";
 import { cookies } from "next/headers"
 import { getUser } from "@/lib/auth";
+import { fetchNotes } from "@/lib/notes";
 
 export default async function Dashboard() {
   const queryClient = getQueryClient();

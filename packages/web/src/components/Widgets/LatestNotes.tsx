@@ -2,15 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Note from "../Note";
-import { fetchNotesClient } from "@/lib/notes";
+import { fetchNotes } from "@/lib/notes";
+import Cookies from "js-cookie";
 
 export default function LatestNotes() {
   const { data, isLoading } = useQuery({
     queryKey: ["latest-notes"],
-    queryFn: () =>
-      fetchNotesClient({
-        limit: 5,
-      }),
+    queryFn: () => fetchNotes(Cookies.get("token") as string, 5),
   });
 
   if (!data || isLoading) return <p>Carregando...</p>;
@@ -24,10 +22,11 @@ export default function LatestNotes() {
         {data.map((note, index) => (
           <Note
             key={index}
+            isPublic={note.isPublic}
             title={note.title}
             description={note.description}
             views={note.views}
-            url={note.url}
+            id={note.id}
           />
         ))}
       </div>

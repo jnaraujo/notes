@@ -1,15 +1,24 @@
 import { views as format } from "@/helpers/format";
 import Link from "next/link";
-import { BarChart } from "lucide-react";
+import { BarChart, EyeOff } from "lucide-react";
 
 interface NoteProps {
   title: string;
   description: string;
   views: number;
-  url: string;
+  isPublic: boolean;
+  id: string;
 }
 
-export default function Note({ title, description, views, url }: NoteProps) {
+export default function Note({
+  title,
+  description,
+  views,
+  isPublic,
+  id,
+}: NoteProps) {
+  const url = isPublic ? `/notes/${id}` : `/notes/private/${id}`;
+
   return (
     <Link
       href={url}
@@ -19,11 +28,16 @@ export default function Note({ title, description, views, url }: NoteProps) {
         <h3 className="line-clamp-2 text-lg font-bold text-zinc-600 transition-colors group-hover:text-purple-500">
           {title}
         </h3>
-        <div className="flex shrink-0 items-center justify-center">
-          <BarChart size={18} />
-          <span className="text-sm" title={`${format(views)} views`}>
-            {format(views)}
-          </span>
+        <div className="flex gap-2">
+          <div className="flex shrink-0 items-center justify-center">
+            <BarChart size={18} />
+            <span className="text-sm" title={`${format(views)} views`}>
+              {format(views)}
+            </span>
+          </div>
+          <div>
+            { !isPublic && <EyeOff size={18} /> }
+          </div>
         </div>
       </div>
       <p className="line-clamp-3 text-base text-zinc-500">{description}</p>

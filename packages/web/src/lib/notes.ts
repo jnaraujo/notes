@@ -1,16 +1,6 @@
-import jscookies from "js-cookie";
 import { LatestNote } from "../../@types/note";
 
-export async function fetchNotesClient({
-  limit = 5,
-}: {
-  limit?: number;
-}): Promise<LatestNote[]> {
-  const token = jscookies.get("token") as string;
-  return fetchNotes(token, limit);
-}
-
-async function fetchNotes(token: string, limit: number) {
+export async function fetchNotes(token: string, limit: number): Promise<LatestNote[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -24,7 +14,8 @@ async function fetchNotes(token: string, limit: number) {
     title: note.title,
     description: note.content,
     views: note.views,
-    url: `/notes/${note.id}`,
+    id: note.id,
+    isPublic: note.isPublic,
   }));
 
   return notes.slice(0, limit);
