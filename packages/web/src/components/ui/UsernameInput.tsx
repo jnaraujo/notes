@@ -10,7 +10,7 @@ const UsernameInput = forwardRef<HTMLInputElement, InputProps>(
       <div>
         <div
           className={clsx(
-            "flex w-full items-center overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline",
+            "relative flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-zinc-500 focus-within:border-zinc-400 focus-within:outline-none",
             {
               "border-red-500": error,
             }

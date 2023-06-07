@@ -11,7 +11,7 @@ export default function SignUp() {
     <main className="flex h-screen items-center justify-center">
       <div className="flex w-full flex-col gap-6 p-4 md:w-96">
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold text-zinc-800">
+          <h1 className="w-48 text-2xl font-bold text-zinc-200">
             Crie uma nova conta 👌
           </h1>
           <SignUpForm />
@@ -19,7 +19,7 @@ export default function SignUp() {
           <p className="text-center text-sm">
             Já tem uma conta?
             <Link
-              className="font-medium text-purple-700 transition hover:text-purple-500"
+              className="font-medium text-purple-500 transition hover:text-purple-600"
               href="/login"
             >
               {" "}
