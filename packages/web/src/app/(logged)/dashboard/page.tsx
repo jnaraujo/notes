@@ -17,12 +17,6 @@ export default async function Dashboard() {
   
   return (
     <>
-      <div className="space-y-1">
-        <h1 className="font-semibold text-zinc-600 md:text-lg">
-          Bem-vindo, {user?.name}!
-        </h1>
-      </div>
-
       <div className="mt-4 flex flex-col justify-between gap-8 md:flex-row">
         <Hydrate state={dehydratedState}>
           <LatestNotes />
