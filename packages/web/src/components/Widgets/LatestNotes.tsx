@@ -15,7 +15,7 @@ export default function LatestNotes() {
 
   return (
     <div className="w-full">
-      <h2 className="text-xl font-bold text-zinc-500 md:text-2xl">
+      <h2 className="text-xl font-semibold text-zinc-50 md:text-2xl">
         Suas últimas notas:
       </h2>
       <div className="mt-2 flex flex-col gap-2">
@@ -25,7 +25,6 @@ export default function LatestNotes() {
             isPublic={note.isPublic}
             title={note.title}
             description={note.description}
-            views={note.views}
             id={note.id}
           />
         ))}
