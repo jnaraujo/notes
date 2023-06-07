@@ -54,7 +54,7 @@ export default function () {
           <PasswordInput id="password" name="password" required tabIndex={2} />
 
           <a
-            className="text-right text-sm font-medium text-purple-700 transition hover:text-purple-500"
+            className="text-right text-sm font-medium text-purple-500 transition hover:text-purple-600"
             href="#"
             tabIndex={4}
           >

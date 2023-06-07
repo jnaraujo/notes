@@ -29,7 +29,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
       <div className="w-full">
         <div
           className={clsx(
-            "flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-gray-400 bg-white outline-1 outline-black focus-within:outline",
+            "flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-zinc-500 focus-within:border-zinc-400 focus-within:outline-none",
             {
               "border-red-500": error,
             }
@@ -49,7 +49,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
           />
           <button
             type="button"
-            className={clsx("mr-2", {
+            className={clsx("mr-2 text-zinc-300", {
               hidden: isInputEmpty,
             })}
             tabIndex={-1}

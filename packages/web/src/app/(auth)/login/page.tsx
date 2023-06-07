@@ -12,7 +12,7 @@ export default function Login() {
     <main className="flex h-screen items-center justify-center">
       <div className="flex w-full flex-col gap-6 p-4 md:w-96">
         <div className="flex flex-col gap-4">
-          <h1 className="w-64 text-2xl font-bold text-zinc-800">
+          <h1 className="w-64 text-2xl font-bold text-zinc-200">
             Faça login para continuar 👋
           </h1>
           <LoginForm />
@@ -20,9 +20,9 @@ export default function Login() {
 
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center">
-            <div className="flex-1 border-t border-gray-300" />
-            <p className="mx-3 text-center text-zinc-400">Ou faça login com</p>
-            <div className="flex-1 border-t border-gray-300" />
+            <div className="flex-1 border-t border-zinc-300" />
+            <p className="mx-3 text-center text-zinc-300">Ou faça login com</p>
+            <div className="flex-1 border-t border-zinc-300" />
           </div>
 
           <div className="flex flex-row justify-center gap-4">
@@ -35,7 +35,7 @@ export default function Login() {
         <p className="text-center text-sm">
           Não tem uma conta?
           <Link
-            className="font-medium text-purple-700 transition hover:text-purple-500"
+            className="font-medium text-purple-500 transition hover:text-purple-600"
             href="/signup"
           >
             {" "}
