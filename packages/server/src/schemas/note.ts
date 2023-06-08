@@ -12,9 +12,6 @@ export const noteSchema = z.object({
     .string({
       required_error: "Content is required",
     })
-    .min(1, {
-      message: "Content must have at least 1 character",
-    })
     .max(10000, {
       message: "Content must have at most 10000 characters",
     }),
