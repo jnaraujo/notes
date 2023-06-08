@@ -1,28 +1,34 @@
+import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   isLoading?: boolean;
   loadingText?: string;
+  asChild?: boolean;
 }
-export default function Button({ children, className, isLoading, loadingText, ...props }: ButtonProps) {
-  loadingText = loadingText || "Carregando...";
-
+export default function Button({
+  children,
+  className,
+  isLoading,
+  asChild,
+  loadingText = "Carregando...",
+  ...props
+}: ButtonProps) {
+  const Component = asChild ? Slot : "button";
   return (
-    <button
+    <Component
       disabled={isLoading}
       className={clsx(
-        "w-full rounded-md bg-zinc-50 p-2 text-zinc-900 font-bold hover:bg-gradient-to-tr from-zinc-300 to-zinc-50",
+        "flex w-full items-center justify-center rounded-md bg-zinc-50 from-zinc-300 to-zinc-50 p-2 font-bold text-zinc-900 hover:bg-gradient-to-tr",
         {
-          "opacity-50 cursor-not-allowed": isLoading,
+          "cursor-not-allowed opacity-50": isLoading,
         },
         className
       )}
       {...props}
     >
-      {
-        isLoading ? loadingText : children
-      }
-    </button>
+      {isLoading ? loadingText : children}
+    </Component>
   );
 }
