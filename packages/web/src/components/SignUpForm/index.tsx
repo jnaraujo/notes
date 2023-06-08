@@ -66,6 +66,7 @@ export default function SignUpForm() {
             required
             {...register("name")}
             error={errors.name?.message}
+            autoComplete="name"
           />
         </div>
 
@@ -78,6 +79,7 @@ export default function SignUpForm() {
             placeholder="Ex: joao.silva"
             {...register("username")}
             error={errors.username?.message}
+            autoComplete="username"
           />
         </div>
 
@@ -87,6 +89,7 @@ export default function SignUpForm() {
             type="email"
             id="email"
             placeholder="Ex: joao@exemplo.com"
+            autoComplete="email"
             tabIndex={3}
             required
             {...register("email")}
@@ -100,6 +103,7 @@ export default function SignUpForm() {
             id="password"
             minLength={8}
             required
+            autoComplete="new-password"
             {...register("password")}
             error={errors.password?.message}
             tabIndex={4}
