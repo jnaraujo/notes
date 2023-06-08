@@ -66,7 +66,7 @@ export default function LoginForm() {
       {/* error */}
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <Button type="submit" tabIndex={3} isLoading={loading}>
+      <Button type="submit" tabIndex={3} className="w-full" isLoading={loading}>
         Login
       </Button>
     </form>
