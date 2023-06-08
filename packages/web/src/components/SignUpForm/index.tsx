@@ -112,8 +112,8 @@ export default function SignUpForm() {
 
       {formError && <ErrorLabel className="mt-1" error={formError} />}
 
-      <Button type="submit" className="w-full" tabIndex={5} isLoading={loading}>
-        Criar sua conta
+      <Button type="submit" className="w-full" tabIndex={5} disabled={loading}>
+        {loading ? "Carregando..." : "Criar sua conta"}
       </Button>
     </form>
   );

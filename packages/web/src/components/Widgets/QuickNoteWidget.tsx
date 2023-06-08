@@ -73,7 +73,7 @@ export default function QuickNoteWidget() {
           <p className="text-sm font-semibold text-green-500">{success}</p>
         )}
 
-        <Button isLoading={loading} type="submit">
+        <Button disabled={loading} type="submit">
           Criar nota privada
         </Button>
       </form>

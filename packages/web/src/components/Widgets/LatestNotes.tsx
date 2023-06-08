@@ -50,7 +50,7 @@ export default function Notes() {
             key={index}
             isPublic={note.isPublic}
             title={note.title}
-            description={note.description}
+            description={note.content}
             id={note.id}
           />
         ))}
