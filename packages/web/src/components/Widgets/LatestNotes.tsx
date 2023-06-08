@@ -23,7 +23,7 @@ export default function LatestNotes() {
           Suas últimas notas:
         </h2>
         <Button className="w-36 h-9" asChild>
-          <Link href="/notes/new">Criar nota</Link>
+          <Link href="/dashboard/notes/new">Criar nota</Link>
         </Button>
       </div>
 
@@ -36,7 +36,7 @@ export default function LatestNotes() {
           <div className="flex flex-col items-center justify-center gap-2">
             <p className="text-zinc-300">Você não tem nenhuma nota ainda.</p>
             <Button className="w-36" asChild>
-              <Link href="/notes/new">Criar nova nota</Link>
+              <Link href="/dashboard/notes/new">Criar nova nota</Link>
             </Button>
           </div>
         )}
