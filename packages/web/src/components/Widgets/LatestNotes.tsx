@@ -22,7 +22,7 @@ export default function LatestNotes() {
         <h2 className="text-lg font-medium text-zinc-100">
           Suas últimas notas:
         </h2>
-        <Button className="h-9 w-36" asChild>
+        <Button className="w-36" asChild>
           <Link href="/dashboard/notes/new">Criar nota</Link>
         </Button>
       </div>
