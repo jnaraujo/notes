@@ -14,7 +14,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={clsx(
-            "w-full rounded-md border border-zinc-500 bg-transparent p-2 text-sm text-zinc-300 focus:border-zinc-400 focus:outline-none h-10",
+            "h-10 w-full rounded-md border border-zinc-500 bg-transparent p-2 text-sm text-zinc-300 focus:border-zinc-400 focus:outline-none",
             {
               "border-red-500": error,
             },

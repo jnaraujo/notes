@@ -59,7 +59,7 @@ export default function LoginForm() {
             tabIndex={2}
             autoComplete="password"
           />
-          
+
           <a
             className="text-right text-sm font-medium text-purple-500 transition hover:text-purple-600"
             href="#"
