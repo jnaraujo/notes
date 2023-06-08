@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "build": "tsup ./src/ --minify",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "lint": "eslint ./src --ext .ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

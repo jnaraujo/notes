@@ -13,7 +13,8 @@
     "web-build": "yarn workspace @notes/web build",
     "web-start": "yarn workspace @notes/web start",
 
-    "format": "yarn workspace @notes/web format && yarn workspace @notes/server format"
+    "format": "yarn workspace @notes/web format && yarn workspace @notes/server format",
+    "lint": "yarn workspace @notes/web lint && yarn workspace @notes/server lint"
   },
   "workspaces": {
     "packages": [

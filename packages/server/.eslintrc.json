@@ -3,7 +3,7 @@
     "browser": false,
     "es2021": true
   },
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
