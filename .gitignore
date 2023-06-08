@@ -8,6 +8,7 @@ lerna-debug.log*
 
 # whatever you want to clean here
 postgres
+mysql
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
