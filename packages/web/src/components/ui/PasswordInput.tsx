@@ -29,7 +29,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
       <div className="w-full">
         <div
           className={clsx(
-            "relative flex w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-zinc-500 focus-within:border-zinc-400 focus-within:outline-none",
+            "relative flex h-10 w-full items-center justify-between gap-1 overflow-hidden rounded-md border border-zinc-500 focus-within:border-zinc-400 focus-within:outline-none",
             {
               "border-red-500": error,
             }
