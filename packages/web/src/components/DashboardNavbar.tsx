@@ -14,7 +14,7 @@ const MENU_LINKS = [
   {
     name: "Criar nota",
     icon: Feather,
-    url: "/notes/new",
+    url: "/dashboard/notes/new",
   },
 ];
 
