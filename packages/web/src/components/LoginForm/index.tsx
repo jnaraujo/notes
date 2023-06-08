@@ -28,10 +28,10 @@ export default function LoginForm() {
         path: "/",
       });
       Router.push("/dashboard");
+      
     } catch (error) {
-      setError("Usuário ou senha incorretos.");
-    } finally {
       setLoading(false);
+      setError("Usuário ou senha incorretos.");
     }
   }
 

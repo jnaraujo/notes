@@ -39,6 +39,7 @@ export default function SignUpForm() {
       Router.push("/dashboard");
     } catch (error: any) {
       const message = errorToMessage(error);
+      setLoading(false);
 
       if (message.field) {
         setError(message.field as any, {
@@ -48,8 +49,6 @@ export default function SignUpForm() {
       } else {
         setFormError(message.message);
       }
-    } finally {
-      setLoading(false);
     }
   }
 
