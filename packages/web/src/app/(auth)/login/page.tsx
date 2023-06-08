@@ -1,5 +1,4 @@
 import LoginForm from "@/components/LoginForm";
-import { Github } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
@@ -16,20 +15,6 @@ export default function Login() {
             Faça login para continuar 👋
           </h1>
           <LoginForm />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-center">
-            <div className="flex-1 border-t border-zinc-300" />
-            <p className="mx-3 text-center text-zinc-300">Ou faça login com</p>
-            <div className="flex-1 border-t border-zinc-300" />
-          </div>
-
-          <div className="flex flex-row justify-center gap-4">
-            <button className="rounded-md border-2 border-zinc-200 p-2 text-zinc-500 transition hover:bg-zinc-200 focus:outline-zinc-800">
-              <Github size={24} />
-            </button>
-          </div>
         </div>
 
         <p className="text-center text-sm">
