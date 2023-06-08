@@ -47,12 +47,19 @@ export default function LoginForm() {
             required
             placeholder="Ex: joao@exemplo.com"
             tabIndex={1}
+            autoComplete="email"
           />
         </div>
         <div className="flex flex-col gap-1">
           <Label htmlFor="password">Senha:</Label>
-          <PasswordInput id="password" name="password" required tabIndex={2} />
-
+          <PasswordInput
+            id="password"
+            name="password"
+            required
+            tabIndex={2}
+            autoComplete="password"
+          />
+          
           <a
             className="text-right text-sm font-medium text-purple-500 transition hover:text-purple-600"
             href="#"
