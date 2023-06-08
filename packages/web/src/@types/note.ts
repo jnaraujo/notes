@@ -1,7 +1,6 @@
-export type LatestNote = {
+export type Note = {
   title: string;
-  description: string;
-  views: number;
+  content: string;
   id: string;
   isPublic: boolean;
 };

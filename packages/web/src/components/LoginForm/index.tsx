@@ -28,7 +28,6 @@ export default function LoginForm() {
         path: "/",
       });
       Router.push("/dashboard");
-      
     } catch (error) {
       setLoading(false);
       setError("Usuário ou senha incorretos.");

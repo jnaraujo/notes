@@ -1,7 +1,5 @@
-import LatestNotes from "@/components/Widgets/LatestNotes";
+import Notes from "@/components/Widgets/LatestNotes";
 
 export default async function Dashboard() {
-  return (
-    <LatestNotes />
-  );
+  return <Notes />;
 }

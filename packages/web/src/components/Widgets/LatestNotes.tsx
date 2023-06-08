@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import Button from "../ui/Button";
 import clsx from "clsx";
 
-export default function LatestNotes() {
+export default function Notes() {
   const { data, isLoading } = useQuery({
     queryKey: ["latest-notes"],
     queryFn: () => fetchNotes(Cookies.get("token") as string, 5),
