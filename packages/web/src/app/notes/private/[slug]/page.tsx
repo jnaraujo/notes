@@ -9,7 +9,7 @@ async function fetchPost(id: string) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${cookies().get("token")?.value}`,
       },
-      cache: "no-store"
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -41,7 +41,7 @@ interface NoteProps {
 
 export default async function Note({ params: { slug } }: NoteProps) {
   const note = await fetchPost(slug);
-  
+
   if (!note) {
     return redirect("/dashboard");
   }
@@ -80,10 +80,10 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params } :Props ) {
+export async function generateMetadata({ params }: Props) {
   const note = await fetchPost(params.slug);
   return {
     title: note?.title + " | Notes",
     description: note?.content,
   };
-} 
+}

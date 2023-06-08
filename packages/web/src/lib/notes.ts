@@ -1,6 +1,9 @@
-import { LatestNote } from "../../@types/note";
+import { LatestNote } from "@/@types/note";
 
-export async function fetchNotes(token: string, limit: number): Promise<LatestNote[]> {
+export async function fetchNotes(
+  token: string,
+  limit: number
+): Promise<LatestNote[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {
       Authorization: `Bearer ${token}`,

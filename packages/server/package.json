@@ -6,7 +6,8 @@
     "dev": "tsx watch ./src/server.ts",
     "build": "tsup ./src/ --minify",
     "start": "node ./dist/server.js",
-    "lint": "eslint ./src --ext .ts"
+    "lint": "eslint ./src --ext .ts",
+    "format": "prettier --write ./src/**/*.{ts,tsx}"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

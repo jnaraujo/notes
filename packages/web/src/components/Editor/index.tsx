@@ -8,8 +8,8 @@ export default function Editor() {
     extensions: extensions,
     editorProps: {
       attributes: {
-        class: "outline-none space-y-2"
-      }
+        class: "outline-none space-y-2",
+      },
     },
     content: `
       <h1>Exemplo de h1</h1>
@@ -36,7 +36,7 @@ export default function Editor() {
       <p>Exemplo de código:</p>
       <code>console.log("Hello world!")</code>
 
-    `
+    `,
   });
 
   return (

@@ -4,4 +4,4 @@ export type LatestNote = {
   views: number;
   id: string;
   isPublic: boolean;
-}
+};

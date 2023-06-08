@@ -6,7 +6,10 @@ interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
 }
 export default function Label({ children, className, ...props }: LabelProps) {
   return (
-    <label className={clsx("text-sm font-medium text-zinc-300", className)} {...props}>
+    <label
+      className={clsx("text-sm font-medium text-zinc-300", className)}
+      {...props}
+    >
       {children}
     </label>
   );

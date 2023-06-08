@@ -26,7 +26,7 @@ const HOST = process.env.HOST || "localhost";
 app
   .listen({
     port: PORT as number,
-    host: HOST
+    host: HOST,
   })
   .then(() => {
     console.log(`Server is running on port ${PORT}`);

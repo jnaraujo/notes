@@ -47,8 +47,10 @@ export default function QuickNoteWidget() {
     refetch();
   }
   return (
-    <div className="flex border border-zinc-500 h-fit w-full bg-zinc-900 flex-col gap-3 rounded-md p-6 shadow-md md:max-w-md">
-      <h2 className="text-xl font-semibold text-zinc-50">Crie uma nota rápida:</h2>
+    <div className="flex h-fit w-full flex-col gap-3 rounded-md border border-zinc-500 bg-zinc-900 p-6 shadow-md md:max-w-md">
+      <h2 className="text-xl font-semibold text-zinc-50">
+        Crie uma nota rápida:
+      </h2>
       <form className="space-y-2" onSubmit={handleSubmit}>
         <Input
           required

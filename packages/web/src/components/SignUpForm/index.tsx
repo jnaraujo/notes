@@ -18,7 +18,7 @@ export interface FormValues {
   password: string;
 }
 
-export default function () {
+export default function SignUpForm() {
   const Router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState<string>();
@@ -30,7 +30,7 @@ export default function () {
   } = useForm<FormValues>();
 
   async function onSubmit(data: FormValues) {
-    setLoading(true);   
+    setLoading(true);
 
     try {
       const token = await signup(data);
@@ -109,11 +109,7 @@ export default function () {
 
       {formError && <ErrorLabel className="mt-1" error={formError} />}
 
-      <Button
-        type="submit"
-        tabIndex={5}
-        isLoading={loading}
-      >
+      <Button type="submit" tabIndex={5} isLoading={loading}>
         Criar sua conta
       </Button>
     </form>

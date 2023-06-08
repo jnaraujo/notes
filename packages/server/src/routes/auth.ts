@@ -1,10 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
-import {
-  userLoginSchema,
-  userRegisterSchema,
-} from "../schemas/user";
+import { userLoginSchema, userRegisterSchema } from "../schemas/user";
 import { AuthError } from "../constants/errors";
 
 export async function authRoutes(app: FastifyInstance) {

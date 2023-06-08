@@ -1,8 +1,8 @@
 "use client";
 
 import { Home, Feather } from "lucide-react";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { isOnPath } from "@/helpers/path";
 import Link from "next/link";
 
 const MENU_LINKS = [
@@ -18,7 +18,13 @@ const MENU_LINKS = [
   },
 ];
 
-export default function () {
+export default function DashboardNavbar() {
+  const pathname = usePathname();
+
+  function isOnPath(path: string) {
+    return pathname.startsWith(path);
+  }
+
   return (
     <nav className="flex h-full flex-col items-center justify-center gap-2 overflow-hidden">
       {MENU_LINKS.map(({ name, url, icon: Icon }) => (
@@ -26,7 +32,7 @@ export default function () {
           key={name}
           href={url}
           className={clsx(
-            "flex w-11/12 items-center justify-center rounded-full py-2 transition-colors duration-200 text-zinc-500 hover:bg-zinc-700/40 hover:text-zinc-100",
+            "flex w-11/12 items-center justify-center rounded-full py-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-700/40 hover:text-zinc-100",
             {
               "bg-zinc-700/40 text-zinc-300": isOnPath(url),
             }

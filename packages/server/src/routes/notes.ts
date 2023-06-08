@@ -1,5 +1,4 @@
 import type { FastifyInstance } from "fastify";
-import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import truncate from "../utils/truncate";
 import { noteIdSchema, noteSchema, usernameSchema } from "../schemas/note";
@@ -44,7 +43,7 @@ export async function notesRoutes(app: FastifyInstance) {
       },
       orderBy: {
         createdAt: "desc",
-      }
+      },
     });
 
     reply.status(200).send(
@@ -101,7 +100,10 @@ export async function notesRoutes(app: FastifyInstance) {
       return;
     }
 
-    const { authorId, ...noteWithoutAuthorId } = note;
+    const noteWithoutAuthorId = {
+      ...note,
+      authorId: undefined,
+    };
 
     reply.status(200).send({
       ...noteWithoutAuthorId,

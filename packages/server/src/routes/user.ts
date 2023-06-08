@@ -16,7 +16,7 @@ export async function userRoutes(app: FastifyInstance) {
       id,
       name,
       email,
-      username
+      username,
     });
   });
 

@@ -8,7 +8,7 @@ import { login } from "./helper";
 import Button from "../ui/Button";
 import Label from "../ui/Label";
 
-export default function () {
+export default function LoginForm() {
   const Router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -66,11 +66,7 @@ export default function () {
       {/* error */}
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <Button
-        type="submit"
-        tabIndex={3}
-        isLoading={loading}
-      >
+      <Button type="submit" tabIndex={3} isLoading={loading}>
         Login
       </Button>
     </form>

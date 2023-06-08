@@ -37,7 +37,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
         >
           <Input
             className={clsx(
-              "border-none bg-transparent p-2 focus:outline-none pr-10",
+              "border-none bg-transparent p-2 pr-10 focus:outline-none",
               className
             )}
             type={showPassword ? "text" : "password"}
