@@ -17,7 +17,7 @@ export default function Notes() {
   const shouldShowEmptyState = data?.length === 0 && !isLoading;
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-3">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-medium text-zinc-100">
           Suas últimas notas:
