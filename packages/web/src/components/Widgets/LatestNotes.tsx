@@ -19,14 +19,12 @@ export default function Notes() {
 
   const shouldShowEmptyState = data?.length === 0 && !isLoading;
 
-  function handleCreateNote(){
-    createNote(
-      Cookies.get("token") as string,
-      "Nota sem título",
-      ""
-    ).then((res) => {
-      Router.push(`/dashboard/notes/${res.id}`);
-    });
+  function handleCreateNote() {
+    createNote(Cookies.get("token") as string, "Nota sem título", "").then(
+      (res) => {
+        Router.push(`/dashboard/notes/${res.id}`);
+      }
+    );
   }
 
   return (
@@ -36,10 +34,7 @@ export default function Notes() {
           <h2 className="text-lg font-medium text-zinc-100">
             Suas últimas notas:
           </h2>
-          <Button
-            className="w-36"
-            onClick={handleCreateNote}
-          >
+          <Button className="w-36" onClick={handleCreateNote}>
             Criar nota
           </Button>
         </div>

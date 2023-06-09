@@ -1,8 +1,6 @@
 import { Note } from "@/@types/note";
 
-export async function fetchNotes(
-  token: string,
-): Promise<Note[]> {
+export async function fetchNotes(token: string): Promise<Note[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -125,7 +123,7 @@ export async function deleteNote(token: string, id: string) {
     },
   });
 
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error("Failed to delete note");
   }
 }

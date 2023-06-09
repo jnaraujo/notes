@@ -29,14 +29,14 @@ export default function Modal({
       <Dialog.Content className="fixed left-1/2 top-1/2 w-[500px] -translate-x-1/2 -translate-y-1/2 transform rounded-lg border border-zinc-500 bg-zinc-950 p-6">
         <div className="space-y-4">
           <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Dialog.Title className="text-lg font-semibold text-zinc-100">
-              {title}
-            </Dialog.Title>
-          </div>
-          <Dialog.Description className="text-sm text-zinc-400">
-            {description}
-          </Dialog.Description>
+            <div className="flex items-center justify-between">
+              <Dialog.Title className="text-lg font-semibold text-zinc-100">
+                {title}
+              </Dialog.Title>
+            </div>
+            <Dialog.Description className="text-sm text-zinc-400">
+              {description}
+            </Dialog.Description>
           </div>
           <div className="flex items-center justify-end space-x-2">
             <Dialog.Close
@@ -51,17 +51,15 @@ export default function Modal({
               </button>
             </Dialog.Close>
             <button
-              className={
-                clsx(
-                  "rounded-md px-4 py-2 font-semibold transition-colors duration-200",
-                  {
-                    "bg-red-700 text-zinc-100 hover:bg-red-700/80":
-                      type === "danger",
-                    "bg-green-700 text-zinc-100 hover:bg-green-700/80":
-                      type === "success",
-                  }
-                )
-              }
+              className={clsx(
+                "rounded-md px-4 py-2 font-semibold transition-colors duration-200",
+                {
+                  "bg-red-700 text-zinc-100 hover:bg-red-700/80":
+                    type === "danger",
+                  "bg-green-700 text-zinc-100 hover:bg-green-700/80":
+                    type === "success",
+                }
+              )}
               onClick={onConfirm}
             >
               {primaryButtonText}

@@ -25,8 +25,8 @@ export default function Editor({ defaultValue = "", onUpdate }: Props) {
   return (
     <div className="overflow-hidden rounded-lg">
       {!editor && (
-        <div className="flex flex-col items-center justify-center gap-2 h-40 text-zinc-600">
-          <Loader2 className="w-8 h-8 animate-spin" />
+        <div className="flex h-40 flex-col items-center justify-center gap-2 text-zinc-600">
+          <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       )}
       <EditorContent

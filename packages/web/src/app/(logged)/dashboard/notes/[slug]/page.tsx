@@ -1,7 +1,7 @@
 import EditorLayout from "@/components/Layouts/EditorLayout";
 import { fetchNote } from "@/lib/notes";
 import { cookies } from "next/headers";
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation";
 
 interface Props {
   params: {
@@ -12,8 +12,8 @@ interface Props {
 export default async function Note({ params: { slug } }: Props) {
   const note = await fetchNote(cookies().get("token")?.value as string, slug);
 
-  if(!note) {
-    redirect("/dashboard")
+  if (!note) {
+    redirect("/dashboard");
   }
 
   return <EditorLayout note={note} />;

@@ -12,8 +12,7 @@ interface Props {
   note: Note;
 }
 
-export default function EditorLayout({ note: initialNote
- }: Props) {
+export default function EditorLayout({ note: initialNote }: Props) {
   const [note, setNote] = useState(initialNote);
   const [hasChanged, setHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -47,8 +46,7 @@ export default function EditorLayout({ note: initialNote
     function handle(event: KeyboardEvent) {
       if (event.code === "KeyS" && event.ctrlKey) {
         event.preventDefault();
-        if(!isSaving && hasChanged)
-          handleSave();
+        if (!isSaving && hasChanged) handleSave();
       }
     }
 
@@ -86,7 +84,9 @@ export default function EditorLayout({ note: initialNote
           className="block bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
           placeholder="Era uma vez..."
           contentEditable
-          onInput={(event) => handleUpdateTitle(event.currentTarget.textContent as string)}
+          onInput={(event) =>
+            handleUpdateTitle(event.currentTarget.textContent as string)
+          }
         >
           {note.title}
         </h1>
