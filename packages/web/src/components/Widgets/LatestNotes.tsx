@@ -19,6 +19,16 @@ export default function Notes() {
 
   const shouldShowEmptyState = data?.length === 0 && !isLoading;
 
+  function handleCreateNote(){
+    createNote(
+      Cookies.get("token") as string,
+      "Nota sem título",
+      ""
+    ).then((res) => {
+      Router.push(`/dashboard/notes/${res.id}`);
+    });
+  }
+
   return (
     <>
       <div className="w-full space-y-3">
@@ -28,15 +38,7 @@ export default function Notes() {
           </h2>
           <Button
             className="w-36"
-            onClick={() => {
-              createNote(
-                Cookies.get("token") as string,
-                "Nota sem título",
-                ""
-              ).then((res) => {
-                Router.push(`/dashboard/notes/${res.id}`);
-              });
-            }}
+            onClick={handleCreateNote}
           >
             Criar nota
           </Button>
@@ -53,8 +55,8 @@ export default function Notes() {
           {shouldShowEmptyState && (
             <div className="flex flex-col items-center justify-center gap-2">
               <p className="text-zinc-300">Você não tem nenhuma nota ainda.</p>
-              <Button className="w-36" asChild>
-                <Link href="/dashboard/notes/new">Criar nova nota</Link>
+              <Button className="w-36" onClick={handleCreateNote}>
+                Criar nova nota
               </Button>
             </div>
           )}
