@@ -48,9 +48,8 @@ export default function Notes() {
         {data?.map((note, index) => (
           <Note
             key={index}
-            isPublic={note.isPublic}
             title={note.title}
-            description={note.content}
+            createdAt={note.createdAt}
             id={note.id}
           />
         ))}
