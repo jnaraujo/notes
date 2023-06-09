@@ -8,61 +8,75 @@ import Cookies from "js-cookie";
 import Button from "../ui/Button";
 import { longDateFormat } from "@/helpers/date";
 import TextareaAutosize from "react-textarea-autosize";
+import { useForm } from "react-hook-form";
 
 interface Props {
   note: Note;
 }
 
 export default function EditorLayout({ note: initialNote }: Props) {
+  const { register, handleSubmit, watch, setValue } = useForm({
+    defaultValues: {
+      title: initialNote.title,
+      content: initialNote.content,
+    },
+  });
+  const title = watch("title");
+  const content = watch("content");
+
   const [note, setNote] = useState(initialNote);
   const [hasChanged, setHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [title, setTitle] = useState(note.title);
-  const [content, setContent] = useState(note.content);
 
-  const handleEditorUpdate = useCallback((html: string) => {
-    setContent(html);
-  }, []);
-
-  function handleUpdateTitle(content: string) {
-    setTitle(content);
-  }
-
-  const handleSave = useCallback(() => {
-    setIsSaving(true);
-    updateNote(
-      Cookies.get("token") as string,
-      note.id,
-      title,
-      content,
-      false
-    ).then((note) => {
-      setHasChanged(false);
-      setIsSaving(false);
-      setNote(note);
-    });
-  }, [content, note.id, title]);
+  const onSubmit = useCallback(
+    (data: any) => {
+      setIsSaving(true);
+      const { title, content } = data;
+      updateNote(
+        Cookies.get("token") as string,
+        note.id,
+        title,
+        content,
+        false
+      ).then((note) => {
+        setHasChanged(false);
+        setIsSaving(false);
+        setNote(note);
+      });
+    },
+    [note.id]
+  );
 
   useEffect(() => {
     function handle(event: KeyboardEvent) {
       if (event.code === "KeyS" && event.ctrlKey) {
         event.preventDefault();
-        if (!isSaving && hasChanged) handleSave();
+        if (!isSaving && hasChanged) {
+          handleSubmit(onSubmit)();
+        }
       }
     }
-
     document.addEventListener("keydown", handle);
     return () => document.removeEventListener("keydown", handle);
-  }, [handleSave, hasChanged, isSaving]);
+  }, [handleSubmit, hasChanged, isSaving, onSubmit]);
 
   useEffect(() => {
-    if (title !== note.title || content !== note.content) {
-      setHasChanged(true);
-    }
-  }, [title, content, note.title, note.content]);
+    console.log(title, content);
+
+    const hasChanged = title !== note.title || content !== note.content;
+
+    setHasChanged(hasChanged);
+  }, [content, note.content, note.title, title]);
+
+  const handleEditorUpdate = useCallback(
+    (html: string) => {
+      setValue("content", html);
+    },
+    [setValue]
+  );
 
   return (
-    <div className="space-y-8">
+    <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex h-8 items-center justify-between">
         <p className="text-sm font-medium text-zinc-500">
           Editado em:{" "}
@@ -72,7 +86,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
         </p>
         {hasChanged && (
           <Button
-            onClick={handleSave}
+            type="submit"
             disabled={isSaving || !hasChanged}
             className="min-w-fit px-4"
           >
@@ -86,12 +100,10 @@ export default function EditorLayout({ note: initialNote }: Props) {
           defaultValue={note.title}
           className="block w-full resize-none bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
           placeholder="Era uma vez..."
-          onInput={(event) =>
-            handleUpdateTitle(event.currentTarget.textContent as string)
-          }
+          {...register("title")}
         />
         <Editor defaultValue={note.content} onUpdate={handleEditorUpdate} />
       </div>
-    </div>
+    </form>
   );
 }
