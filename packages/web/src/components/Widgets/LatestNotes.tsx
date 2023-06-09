@@ -22,6 +22,7 @@ export default function Notes() {
   const shouldShowEmptyState = data?.length === 0 && !isLoading;
 
   function handleCreateNote() {
+    setIsCreatingNote(true);
     createNote(Cookies.get("token") as string, "Nota sem título", "").then(
       (res) => {
         Router.push(`/dashboard/notes/${res.id}`);
