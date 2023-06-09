@@ -13,10 +13,12 @@ const MENU_LINKS = [
     name: "Dashboard",
     icon: Home,
     url: "/dashboard",
+    isOnPath: (path: string) => path === "/dashboard",
   },
   {
     name: "Criar nota",
     icon: Feather,
+    isOnPath: (path: string) => false,
     onClick: (Router: any) => {
       createNote(Cookies.get("token") as string, "Nota sem título", "").then(
         (res) => {
@@ -31,18 +33,14 @@ export default function DashboardNavbar() {
   const pathname = usePathname();
   const Router = useRouter();
 
-  function isOnPath(path: string) {
-    return pathname.startsWith(path);
-  }
-
   return (
     <nav className="flex h-full flex-col items-center justify-center gap-2 overflow-hidden">
-      {MENU_LINKS.map(({ name, url, icon: Icon, onClick }) => (
+      {MENU_LINKS.map(({ name, url, icon: Icon, onClick, isOnPath }) => (
         <Item
           key={name}
           name={name}
           Icon={Icon}
-          highlight={isOnPath(url || "")}
+          highlight={isOnPath(pathname)}
           url={url}
           onClick={() => {
             onClick?.(Router);
