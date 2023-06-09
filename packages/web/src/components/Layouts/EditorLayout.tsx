@@ -73,7 +73,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
           <Button
             onClick={handleSave}
             disabled={isSaving || !hasChanged}
-            className="px-4 min-w-fit"
+            className="min-w-fit px-4"
           >
             {isSaving ? "Salvando..." : "Salvar"}
           </Button>

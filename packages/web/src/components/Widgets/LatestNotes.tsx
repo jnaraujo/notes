@@ -37,8 +37,12 @@ export default function Notes() {
           <h2 className="text-lg font-medium text-zinc-100">
             Suas últimas notas:
           </h2>
-          <Button className="w-36" onClick={handleCreateNote} disabled={isCreatingNote}>
-          {isCreatingNote ? "Criando nota..." : "Criar nota"}
+          <Button
+            className="w-36"
+            onClick={handleCreateNote}
+            disabled={isCreatingNote}
+          >
+            {isCreatingNote ? "Criando nota..." : "Criar nota"}
           </Button>
         </div>
 
@@ -53,7 +57,11 @@ export default function Notes() {
           {shouldShowEmptyState && (
             <div className="flex flex-col items-center justify-center gap-2">
               <p className="text-zinc-300">Você não tem nenhuma nota ainda.</p>
-              <Button className="w-36" onClick={handleCreateNote} disabled={isCreatingNote}>
+              <Button
+                className="w-36"
+                onClick={handleCreateNote}
+                disabled={isCreatingNote}
+              >
                 {isCreatingNote ? "Criando nota..." : "Criar nova nota"}
               </Button>
             </div>
