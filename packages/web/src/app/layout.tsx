@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sans.className} ${serif.className} bg-zinc-950 font-sans text-zinc-200`}
+        className={`${sans.className} ${serif.className} bg-zinc-950 text-zinc-200`}
       >
         <Provider>{children}</Provider>
       </body>

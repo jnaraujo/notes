@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,8 +9,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
-      serif: ["Roboto Slab", "serif"],
+      sans: ["Inter", "sans-serif", ...defaultTheme.fontFamily.sans],
+      serif: ["'Roboto Slab'", "serif", ...defaultTheme.fontFamily.serif],
     },
   },
   plugins: [require("@tailwindcss/typography")],
