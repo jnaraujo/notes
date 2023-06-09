@@ -22,7 +22,7 @@ const MENU_LINKS = [
     onClick: (Router: any) => {
       createNote(Cookies.get("token") as string, "Nota sem título", "").then(
         (res) => {
-          Router.push(`/dashboard/notes/${res.id}`);
+          Router.push(`/dashboard/draft/${res.id}`);
         }
       );
     },

@@ -39,7 +39,7 @@ export default function Note({ title, createdAt, id }: NoteProps) {
   return (
     <>
       <div className="group flex h-20 w-full cursor-pointer items-center justify-between rounded-md border border-zinc-500 px-4 shadow shadow-transparent transition-all duration-300 hover:border-zinc-200 hover:shadow-zinc-400">
-        <Link href={`/dashboard/notes/${id}`} className="flex-1">
+        <Link href={`/dashboard/draft/${id}`} className="flex-1">
           <h3 className="line-clamp-2 font-semibold text-zinc-200 transition-colors">
             {title}
           </h3>
