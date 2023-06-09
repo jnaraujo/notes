@@ -2,11 +2,13 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import { extensions } from "./extensions";
+import { Loader2 } from "lucide-react";
 
 interface Props {
   defaultValue?: string;
+  onUpdate?: (html: string) => void;
 }
-export default function Editor({ defaultValue = "" }: Props) {
+export default function Editor({ defaultValue = "", onUpdate }: Props) {
   const editor = useEditor({
     extensions: extensions,
     editorProps: {
@@ -14,11 +16,19 @@ export default function Editor({ defaultValue = "" }: Props) {
         class: "outline-none space-y-2",
       },
     },
+    onUpdate: ({ editor }) => {
+      onUpdate?.(editor.getHTML());
+    },
     content: defaultValue,
   });
 
   return (
-    <div className="min-h-[600px] overflow-hidden rounded-lg border border-zinc-500 p-4">
+    <div className="overflow-hidden rounded-lg">
+      {!editor && (
+        <div className="flex flex-col items-center justify-center gap-2 h-40 text-zinc-600">
+          <Loader2 className="w-8 h-8 animate-spin" />
+        </div>
+      )}
       <EditorContent
         className="w-full appearance-none bg-transparent"
         editor={editor}

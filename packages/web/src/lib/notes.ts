@@ -18,6 +18,8 @@ export async function fetchNotes(
     description: note.content,
     id: note.id,
     isPublic: note.isPublic,
+    createdAt: new Date(note.createdAt),
+    updatedAt: new Date(note.updatedAt),
   }));
 
   return notes.slice(0, limit);
@@ -26,7 +28,7 @@ export async function fetchNotes(
 export async function createNote(
   token: string,
   title: string,
-  description: string
+  content: string
 ): Promise<Note> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     method: "POST",
@@ -36,7 +38,7 @@ export async function createNote(
     },
     body: JSON.stringify({
       title,
-      content: description,
+      content,
       isPublic: false,
     }),
   });
@@ -52,6 +54,8 @@ export async function createNote(
     content: json.content,
     id: json.id,
     isPublic: json.isPublic,
+    createdAt: new Date(json.createdAt),
+    updatedAt: new Date(json.updatedAt),
   };
 }
 
@@ -59,7 +63,7 @@ export async function updateNote(
   token: string,
   id: string,
   title: string,
-  description: string,
+  content: string,
   isPublic: boolean
 ) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes/${id}`, {
@@ -70,7 +74,7 @@ export async function updateNote(
     },
     body: JSON.stringify({
       title,
-      content: description,
+      content,
       isPublic,
     }),
   });
@@ -85,6 +89,8 @@ export async function updateNote(
     content: json.content,
     id: json.id,
     isPublic: json.isPublic,
+    createdAt: new Date(json.createdAt),
+    updatedAt: new Date(json.updatedAt),
   };
 
   return note;
@@ -105,6 +111,8 @@ export async function fetchNote(token: string, id: string) {
     content: json.content,
     id: json.id,
     isPublic: json.isPublic,
+    createdAt: new Date(json.createdAt),
+    updatedAt: new Date(json.updatedAt),
   };
 
   return note;

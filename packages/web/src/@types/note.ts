@@ -3,4 +3,6 @@ export type Note = {
   content: string;
   id: string;
   isPublic: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 };
