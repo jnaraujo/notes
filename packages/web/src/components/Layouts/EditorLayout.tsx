@@ -7,6 +7,7 @@ import { updateNote } from "@/lib/notes";
 import Cookies from "js-cookie";
 import Button from "../ui/Button";
 import { longDateFormat } from "@/helpers/date";
+import TextareaAutosize from "react-textarea-autosize";
 
 interface Props {
   note: Note;
@@ -80,16 +81,15 @@ export default function EditorLayout({ note: initialNote }: Props) {
         )}
       </div>
       <div className="space-y-8">
-        <h1
-          className="block bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
+        <TextareaAutosize
+          autoFocus
+          defaultValue={note.title}
+          className="block w-full resize-none bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
           placeholder="Era uma vez..."
-          contentEditable
           onInput={(event) =>
             handleUpdateTitle(event.currentTarget.textContent as string)
           }
-        >
-          {note.title}
-        </h1>
+        />
         <Editor defaultValue={note.content} onUpdate={handleEditorUpdate} />
       </div>
     </div>
