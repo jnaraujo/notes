@@ -2,7 +2,6 @@ import { Note } from "@/@types/note";
 
 export async function fetchNotes(
   token: string,
-  limit: number
 ): Promise<Note[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes`, {
     headers: {
@@ -22,7 +21,7 @@ export async function fetchNotes(
     updatedAt: new Date(note.updatedAt),
   }));
 
-  return notes.slice(0, limit);
+  return notes;
 }
 
 export async function createNote(
@@ -116,4 +115,17 @@ export async function fetchNote(token: string, id: string) {
   };
 
   return note;
+}
+
+export async function deleteNote(token: string, id: string) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notes/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if(!response.ok) {
+    throw new Error("Failed to delete note");
+  }
 }
