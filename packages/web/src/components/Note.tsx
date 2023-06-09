@@ -15,6 +15,7 @@ interface NoteProps {
 
 export default function Note({ title, createdAt, id }: NoteProps) {
   const [open, setOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { refetch } = useQuery({
     queryKey: ["latest-notes"],
   });
@@ -24,12 +25,14 @@ export default function Note({ title, createdAt, id }: NoteProps) {
   }
 
   async function onConfirm() {
+    setIsDeleting(true);
     deleteNote(Cookies.get("token") as string, id)
       .then(() => {
         refetch();
       })
       .finally(() => {
         setOpen(false);
+        setIsDeleting(false);
       });
   }
 
@@ -60,9 +63,11 @@ export default function Note({ title, createdAt, id }: NoteProps) {
           onConfirm={onConfirm}
           title="Tem certeza que deseja excluir essa nota?"
           description="Essa ação não pode ser desfeita."
-          primaryButtonText="Sim, excluir nota"
+          primaryButtonText={isDeleting ? "Excluindo..." : "Sim, excluir nota"}
           secondaryButtonText="Cancelar"
           type="danger"
+          primaryButtonDisabled={isDeleting}
+          secondaryButtonDisabled={isDeleting}
         />
       )}
     </>

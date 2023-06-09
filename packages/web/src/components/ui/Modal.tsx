@@ -10,6 +10,8 @@ interface ModalProps {
   type?: "danger" | "success";
   primaryButtonText?: string;
   secondaryButtonText?: string;
+  primaryButtonDisabled?: boolean;
+  secondaryButtonDisabled?: boolean;
 }
 
 export default function Modal({
@@ -20,7 +22,9 @@ export default function Modal({
   type = "success",
   description,
   primaryButtonText = "Confirmar",
+  primaryButtonDisabled = false,
   secondaryButtonText = "Cancelar",
+  secondaryButtonDisabled = false,
 }: ModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onClose}>
@@ -44,15 +48,17 @@ export default function Modal({
               asChild
             >
               <button
-                className="rounded-md border border-zinc-500 px-4 py-2 font-semibold text-zinc-100 transition-colors duration-200"
+                disabled={secondaryButtonDisabled}
+                className="rounded-md border border-zinc-500 px-4 py-2 font-semibold text-zinc-100 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={onClose}
               >
                 {secondaryButtonText}
               </button>
             </Dialog.Close>
             <button
+              disabled={primaryButtonDisabled}
               className={clsx(
-                "rounded-md px-4 py-2 font-semibold transition-colors duration-200",
+                "rounded-md px-4 py-2 font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50",
                 {
                   "bg-red-700 text-zinc-100 hover:bg-red-700/80":
                     type === "danger",
