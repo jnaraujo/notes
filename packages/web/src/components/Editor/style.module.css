@@ -1,0 +1,37 @@
+.editor h1 {
+  font-size: theme('fontSize.3xl');
+  font-weight: theme('fontWeight.bold');
+}
+
+.editor h2 {
+  font-size: theme('fontSize.2xl');
+  font-weight: theme('fontWeight.bold');
+}
+
+.editor h2 {
+  font-size: theme('fontSize.xl');
+  font-weight: theme('fontWeight.bold');
+}
+
+.editor p {
+  font-size: theme('fontSize.lg');
+  font-weight: theme('fontWeight.medium');
+  color: theme("colors.zinc.300");
+}
+
+.editor code {
+  display: block;
+  font-family: monospace;
+  font-size: theme('fontSize.sm');
+  font-weight: theme('fontWeight.medium');
+  color: theme("colors.zinc.300");
+  background-color: theme("colors.zinc.800");
+  padding: theme('padding.2');
+  border-radius: theme('borderRadius.md');
+  width: 100%;
+}
+
+.editor img {
+  border-radius: theme('borderRadius.md');
+  max-height: 300px;
+}
