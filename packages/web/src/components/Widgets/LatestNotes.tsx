@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import Button from "../ui/Button";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Notes() {
   const { data, isLoading } = useQuery({
@@ -15,6 +16,7 @@ export default function Notes() {
     queryFn: () => fetchNotes(Cookies.get("token") as string),
     refetchOnMount: "always",
   });
+  const [isCreatingNote, setIsCreatingNote] = useState(false);
   const Router = useRouter();
 
   const shouldShowEmptyState = data?.length === 0 && !isLoading;
@@ -34,8 +36,8 @@ export default function Notes() {
           <h2 className="text-lg font-medium text-zinc-100">
             Suas últimas notas:
           </h2>
-          <Button className="w-36" onClick={handleCreateNote}>
-            Criar nota
+          <Button className="w-36" onClick={handleCreateNote} disabled={isCreatingNote}>
+          {isCreatingNote ? "Criando nota..." : "Criar nota"}
           </Button>
         </div>
 
@@ -50,8 +52,8 @@ export default function Notes() {
           {shouldShowEmptyState && (
             <div className="flex flex-col items-center justify-center gap-2">
               <p className="text-zinc-300">Você não tem nenhuma nota ainda.</p>
-              <Button className="w-36" onClick={handleCreateNote}>
-                Criar nova nota
+              <Button className="w-36" onClick={handleCreateNote} disabled={isCreatingNote}>
+                {isCreatingNote ? "Criando nota..." : "Criar nova nota"}
               </Button>
             </div>
           )}
