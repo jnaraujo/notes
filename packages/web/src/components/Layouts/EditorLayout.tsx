@@ -56,8 +56,21 @@ export default function EditorLayout({ note: initialNote }: Props) {
         }
       }
     }
+
+    function handleBeforeClosePage(event: BeforeUnloadEvent) {
+      if(hasChanged) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    }
+
+    window.addEventListener("beforeunload", handleBeforeClosePage)
     document.addEventListener("keydown", handle);
-    return () => document.removeEventListener("keydown", handle);
+
+    return () => {
+      document.removeEventListener("keydown", handle);
+      window.removeEventListener("beforeunload", handleBeforeClosePage)
+    }
   }, [handleSubmit, hasChanged, isSaving, onSubmit]);
 
   useEffect(() => {
