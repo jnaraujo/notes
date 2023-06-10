@@ -1,37 +1,45 @@
 .editor h1 {
-  font-size: theme('fontSize.3xl');
-  font-weight: theme('fontWeight.bold');
+  font-size: theme("fontSize.3xl");
+  font-weight: theme("fontWeight.bold");
 }
 
 .editor h2 {
-  font-size: theme('fontSize.2xl');
-  font-weight: theme('fontWeight.bold');
+  font-size: theme("fontSize.2xl");
+  font-weight: theme("fontWeight.bold");
 }
 
 .editor h2 {
-  font-size: theme('fontSize.xl');
-  font-weight: theme('fontWeight.bold');
+  font-size: theme("fontSize.xl");
+  font-weight: theme("fontWeight.bold");
 }
 
 .editor p {
-  font-size: theme('fontSize.lg');
-  font-weight: theme('fontWeight.medium');
+  font-size: theme("fontSize.lg");
+  font-weight: theme("fontWeight.medium");
   color: theme("colors.zinc.300");
 }
 
 .editor code {
   display: block;
   font-family: monospace;
-  font-size: theme('fontSize.sm');
-  font-weight: theme('fontWeight.medium');
+  font-size: theme("fontSize.sm");
+  font-weight: theme("fontWeight.medium");
   color: theme("colors.zinc.300");
   background-color: theme("colors.zinc.800");
-  padding: theme('padding.2');
-  border-radius: theme('borderRadius.md');
+  padding: theme("padding.2");
+  border-radius: theme("borderRadius.md");
   width: 100%;
 }
 
 .editor img {
-  border-radius: theme('borderRadius.md');
+  border-radius: theme("borderRadius.md");
   max-height: 300px;
+}
+
+.editor p.emptyNodeClass::before {
+  color: theme("colors.zinc.600");
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }

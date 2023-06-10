@@ -50,23 +50,24 @@ export default function FloatingMenu({ editor }: { editor: Editor }) {
 
   useEffect(() => {
     function handle(event: KeyboardEvent) {
-      if (event.code === "Tab") {
-        event.preventDefault();
-        setOpen((prev) => !prev);
-      }
-
-      if (event.code === "Enter") {
-        const items = contentRef.current?.querySelectorAll("button");
-        if (items) {
-          items[currentIndex]?.click();
-        }
-        setOpen(false);
-      }
-
-      if (event.code === "ArrowDown") {
-        handleIndexChange("next");
-      } else if (event.code === "ArrowUp") {
-        handleIndexChange("prev");
+      switch (event.code) {
+        case "Tab":
+          event.preventDefault();
+          setOpen((prev) => !prev);
+          break;
+        case "Enter":
+          const items = contentRef.current?.querySelectorAll("button");
+          if (items) {
+            items[currentIndex]?.click();
+          }
+          setOpen(false);
+          break;
+        case "ArrowDown":
+          handleIndexChange("next");
+          break;
+        case "ArrowUp":
+          handleIndexChange("prev");
+          break;
       }
     }
     document.addEventListener("keydown", handle);
