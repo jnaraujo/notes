@@ -61,8 +61,6 @@ export default function EditorLayout({ note: initialNote }: Props) {
   }, [handleSubmit, hasChanged, isSaving, onSubmit]);
 
   useEffect(() => {
-    console.log(title, content);
-
     const hasChanged = title !== note.title || content !== note.content;
 
     setHasChanged(hasChanged);
