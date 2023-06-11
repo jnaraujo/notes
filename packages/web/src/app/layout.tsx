@@ -2,10 +2,11 @@ import Provider from "@/components/Provider";
 import "./globals.css";
 import { Inter, Roboto_Slab } from "next/font/google";
 
-const sans = Inter({ subsets: ["latin"] });
+const sans = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const serif = Roboto_Slab({
   subsets: ["latin"],
   weight: ["400", "700"],
+  variable: "--font-roboto-slab",
 });
 
 export const metadata = {
@@ -19,9 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body
-        className={`${sans.className} ${serif.className} bg-zinc-950 text-zinc-200`}
+        className={`bg-zinc-950 text-zinc-200`}
       >
         <Provider>{children}</Provider>
       </body>

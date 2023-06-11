@@ -9,8 +9,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans-serif", ...defaultTheme.fontFamily.sans],
-      serif: ["'Roboto Slab'", "serif", ...defaultTheme.fontFamily.serif],
+      sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      serif: ["var(--font-roboto-slab)", ...defaultTheme.fontFamily.serif],
     },
   },
   plugins: [require("@tailwindcss/typography")],
