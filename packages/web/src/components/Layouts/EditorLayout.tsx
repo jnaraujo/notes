@@ -2,13 +2,14 @@
 
 import { Note } from "@/@types/note";
 import Editor from "../Editor";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { updateNote } from "@/lib/notes";
 import Cookies from "js-cookie";
 import Button from "../ui/Button";
 import { longDateFormat } from "@/helpers/date";
 import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
+import Select from "../ui/Select";
 
 interface Props {
   note: Note;
@@ -19,33 +20,42 @@ export default function EditorLayout({ note: initialNote }: Props) {
     defaultValues: {
       title: initialNote.title,
       content: initialNote.content,
+      isPublic: initialNote.isPublic,
     },
   });
   const title = watch("title");
   const content = watch("content");
+  const isPublic = watch("isPublic");
 
   const [note, setNote] = useState(initialNote);
-  const [hasChanged, setHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   const onSubmit = useCallback(
     (data: any) => {
       setIsSaving(true);
-      const { title, content } = data;
+
+      const { title, content, isPublic } = data;
       updateNote(
         Cookies.get("token") as string,
         note.id,
         title,
         content,
-        false
+        isPublic
       ).then((note) => {
-        setHasChanged(false);
         setIsSaving(false);
         setNote(note);
       });
     },
     [note.id]
   );
+
+  const hasChanged = useMemo(() => {
+    return (
+      title !== note.title ||
+      content !== note.content ||
+      isPublic !== note.isPublic
+    );
+  }, [title, note, content, isPublic]);
 
   useEffect(() => {
     function handle(event: KeyboardEvent) {
@@ -58,26 +68,20 @@ export default function EditorLayout({ note: initialNote }: Props) {
     }
 
     function handleBeforeClosePage(event: BeforeUnloadEvent) {
-      if(hasChanged) {
+      if (hasChanged) {
         event.preventDefault();
         event.returnValue = "";
       }
     }
 
-    window.addEventListener("beforeunload", handleBeforeClosePage)
+    window.addEventListener("beforeunload", handleBeforeClosePage);
     document.addEventListener("keydown", handle);
 
     return () => {
       document.removeEventListener("keydown", handle);
-      window.removeEventListener("beforeunload", handleBeforeClosePage)
-    }
+      window.removeEventListener("beforeunload", handleBeforeClosePage);
+    };
   }, [handleSubmit, hasChanged, isSaving, onSubmit]);
-
-  useEffect(() => {
-    const hasChanged = title !== note.title || content !== note.content;
-
-    setHasChanged(hasChanged);
-  }, [content, note.content, note.title, title]);
 
   const handleEditorUpdate = useCallback(
     (html: string) => {
@@ -85,6 +89,10 @@ export default function EditorLayout({ note: initialNote }: Props) {
     },
     [setValue]
   );
+
+  function handleOnStatusChange(value: string) {
+    setValue("isPublic", value === "Público");
+  }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -95,7 +103,12 @@ export default function EditorLayout({ note: initialNote }: Props) {
             ? longDateFormat(note.updatedAt)
             : longDateFormat(note.createdAt)}
         </p>
-        {hasChanged && (
+        <div className="flex gap-2">
+          <Select
+            items={["Privado", "Público"]}
+            defaultValue={isPublic ? "Público" : "Privado"}
+            onChange={handleOnStatusChange}
+          />
           <Button
             type="submit"
             disabled={isSaving || !hasChanged}
@@ -103,7 +116,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
           >
             {isSaving ? "Salvando..." : "Salvar"}
           </Button>
-        )}
+        </div>
       </div>
       <div className="space-y-8">
         <TextareaAutosize
