@@ -3,7 +3,7 @@ import Heading from "@tiptap/extension-heading";
 import Placeholder from "@tiptap/extension-placeholder";
 import Image from "@tiptap/extension-image";
 
-import styles from "./style.module.css";
+import styles from "@/styles/note.module.css";
 
 export const extensions = [
   StarterKit.configure({

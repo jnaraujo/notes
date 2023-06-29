@@ -1,6 +1,8 @@
 import { dateToLocaleString } from "@/helpers/date";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import styles from "@/styles/note.module.css";
+import clsx from "clsx";
 
 export const revalidate = 120; // 2 minutes
 
@@ -49,7 +51,7 @@ export default async function Note({ params: { slug } }: NoteProps) {
 
   return (
     <main className="flex justify-center">
-      <article className="prose prose-zinc w-[768px] max-w-screen-md p-4 md:prose-lg">
+      <article className="w-[768px] max-w-screen-md p-4">
         <div className="mb-2 border-b-2 border-gray-300 pb-2">
           <h1 className="!mb-1">{note.title}</h1>
           <div className="mt-2 flex items-center justify-between gap-2">
@@ -65,13 +67,12 @@ export default async function Note({ params: { slug } }: NoteProps) {
             </strong>
           </div>
         </div>
-        <div>
-          {note.content
-            .split(/\\n/g)
-            .map((paragraph: string, index: number) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-        </div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: note.content,
+          }}
+          className={clsx(styles.content, "leading-relaxed")}
+        />
       </article>
     </main>
   );

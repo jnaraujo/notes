@@ -4,7 +4,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import { extensions } from "./extensions";
 import { Loader2 } from "lucide-react";
 import FloatingMenu from "./FloatingMenu";
-import style from "./style.module.css"
+import style from "@/styles/note.module.css";
 
 interface Props {
   defaultValue?: string;
@@ -31,13 +31,9 @@ export default function Editor({ defaultValue = "", onUpdate }: Props) {
           <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       )}
-      {
-        editor && (
-          <FloatingMenu editor={editor} />
-        )
-      }
+      {editor && <FloatingMenu editor={editor} />}
       <EditorContent
-        className={`w-full appearance-none bg-transparent ${style.editor}`}
+        className={`w-full appearance-none bg-transparent ${style.content}`}
         editor={editor}
       />
     </div>
