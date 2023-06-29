@@ -35,6 +35,7 @@ export default function Editor({ defaultValue = "", onUpdate }: Props) {
       <EditorContent
         className={`w-full appearance-none bg-transparent ${style.content}`}
         editor={editor}
+        spellCheck={false}
       />
     </div>
   );

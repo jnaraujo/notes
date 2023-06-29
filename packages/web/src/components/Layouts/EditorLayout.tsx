@@ -152,6 +152,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
         <TextareaAutosize
           autoFocus
           defaultValue={note.title}
+          spellCheck={false}
           className="block w-full resize-none bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
           placeholder="Era uma vez..."
           {...register("title")}
