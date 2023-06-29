@@ -148,7 +148,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
           </Button>
         </div>
       </div>
-      <div className="space-y-8">
+      <div className="space-y-2">
         <TextareaAutosize
           autoFocus
           defaultValue={note.title}
