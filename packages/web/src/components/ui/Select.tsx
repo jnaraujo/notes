@@ -20,7 +20,7 @@ export default function Select({
     <SelectComp.Root onValueChange={onChange} defaultValue={defaultValue}>
       <SelectComp.Trigger
         className={clsx(
-          "flex h-10 cursor-pointer items-center justify-center gap-1 rounded-md border border-zinc-400 bg-transparent px-3 py-1 text-zinc-300 focus:border-zinc-400"
+          "flex h-10 cursor-pointer items-center justify-center gap-1 rounded-md border border-zinc-400 bg-transparent px-3 py-1 text-zinc-300 hover:border-zinc-300"
         )}
         aria-label="Food"
       >

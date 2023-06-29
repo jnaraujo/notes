@@ -10,6 +10,9 @@ import { longDateFormat } from "@/helpers/date";
 import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
 import Select from "../ui/Select";
+import { Forward, Send } from "lucide-react";
+import Tooltip from "../ui/Tooltip";
+import { toast } from "react-hot-toast";
 
 interface Props {
   note: Note;
@@ -94,16 +97,43 @@ export default function EditorLayout({ note: initialNote }: Props) {
     setValue("isPublic", value === "Público");
   }
 
+  function handleShare() {
+    if (!note.isPublic) {
+      toast.error("Você não pode compartilhar uma nota privada");
+      return;
+    }
+
+    if (!navigator || !navigator.clipboard) {
+      toast.error(
+        "Seu navegador não suporta a funcionalidade de copiar para a área de transferência"
+      );
+      return;
+    }
+
+    toast.success("O link da nota foi copiado para a área de transferência");
+    navigator.clipboard.writeText(`${window.location.origin}/notes/${note.id}`);
+  }
+
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex h-8 items-center justify-between">
-        <p className="text-sm font-medium text-zinc-500">
-          Editado em:{" "}
-          {note.updatedAt
-            ? longDateFormat(note.updatedAt)
-            : longDateFormat(note.createdAt)}
-        </p>
-        <div className="flex gap-2">
+        <div className="flex flex-col">
+          <p className="text-sm font-medium text-zinc-500">
+            Editado em:{" "}
+            {note.updatedAt
+              ? longDateFormat(note.updatedAt)
+              : longDateFormat(note.createdAt)}
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center text-zinc-300 hover:text-zinc-200"
+            onClick={handleShare}
+          >
+            <Send size={20} />
+          </button>
+
           <Select
             items={["Privado", "Público"]}
             defaultValue={isPublic ? "Público" : "Privado"}
