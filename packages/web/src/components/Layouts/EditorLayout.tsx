@@ -126,13 +126,15 @@ export default function EditorLayout({ note: initialNote }: Props) {
           </p>
         </div>
         <div className="flex gap-4">
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center text-zinc-300 hover:text-zinc-200"
-            onClick={handleShare}
-          >
-            <Send size={20} />
-          </button>
+          <Tooltip text="Compartilhar">
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center text-zinc-300 hover:text-zinc-200"
+              onClick={handleShare}
+            >
+              <Send size={20} />
+            </button>
+          </Tooltip>
 
           <Select
             items={["Privado", "Público"]}
