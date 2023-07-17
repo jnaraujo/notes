@@ -30,9 +30,10 @@
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@fastify/jwt": "^6.7.1",
-    "@prisma/client": "^4.14.1",
+    "@prisma/client": "5",
     "bcrypt": "^5.1.0",
     "fastify": "^4.17.0",
+    "prisma": "5",
     "zod": "^3.21.4"
   }
 }
