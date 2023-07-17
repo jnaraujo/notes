@@ -1,8 +1,8 @@
 import { dateToLocaleString } from "@/helpers/date";
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import styles from "@/styles/note.module.css";
 import clsx from "clsx";
+import { mensureReadingTimeInMin } from "@/helpers/readingTime";
 
 export const revalidate = 120; // 2 minutes
 
@@ -51,21 +51,18 @@ export default async function Note({ params: { slug } }: NoteProps) {
 
   return (
     <main className="flex justify-center">
-      <article className="w-[768px] max-w-screen-md p-4">
-        <div className="mb-2 border-b-2 border-gray-300 pb-2">
-          <h1 className="!mb-1">{note.title}</h1>
-          <div className="mt-2 flex items-center justify-between gap-2">
-            <a
-              href="#"
-              className="font-medium text-purple-700 transition hover:text-purple-500"
-            >
-              <span className="font-medium">@</span>
-              {note.author.username.toLowerCase()}
-            </a>
-            <strong className="font-medium text-zinc-600">
-              📆 {dateToLocaleString(note.createdAt)}
-            </strong>
-          </div>
+      <article className="my-6 w-[768px] max-w-screen-md space-y-6 p-4">
+        <h1 className="font-serif text-5xl font-bold text-zinc-300 ">
+          {note.title}
+        </h1>
+        <div className="space-x-2 font-medium text-zinc-400 md:space-x-6">
+          <a href="#" className="hover:text-purple-500">
+            @{note.author.username.toLowerCase()}
+          </a>
+          <span>•</span>
+          <span>☕ {mensureReadingTimeInMin(note.content)} min(s)</span>
+          <span>•</span>
+          <span>{dateToLocaleString(note.createdAt)}</span>
         </div>
         <div
           dangerouslySetInnerHTML={{
