@@ -129,7 +129,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
           <Tooltip text="Compartilhar">
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center text-zinc-300 hover:text-zinc-200"
+              className="ml-8 flex h-10 items-center justify-center text-zinc-300 hover:text-zinc-200"
               onClick={handleShare}
             >
               <Send size={20} />
@@ -155,7 +155,7 @@ export default function EditorLayout({ note: initialNote }: Props) {
           autoFocus
           defaultValue={note.title}
           spellCheck={false}
-          className="block w-full resize-none bg-transparent font-serif text-6xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
+          className="block w-full resize-none bg-transparent font-serif text-5xl font-bold text-zinc-300 placeholder-zinc-600 outline-none"
           placeholder="Era uma vez..."
           {...register("title")}
         />
