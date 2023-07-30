@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-      <body className={`bg-zinc-950 text-zinc-200`}>
+      <body className={`bg-zinc-950 text-zinc-200 antialiased`}>
         <Provider>{children}</Provider>
       </body>
     </html>

@@ -27,7 +27,7 @@ export default function DashboardNavbar({ user }: Props) {
     <div className="flex h-full w-full flex-col items-center justify-between">
       <div className="w-full p-4 py-8">
         <Link href="/dashboard" className="text-xl font-medium">
-          📝 AweNotes
+          AweNotes
         </Link>
       </div>
       <nav className="flex w-full flex-col items-center justify-center gap-2 justify-self-center overflow-hidden">
@@ -68,17 +68,16 @@ function Item({
     <Link
       href={url}
       className={clsx(
-        "flex w-11/12 items-center justify-center rounded-md py-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-700/40 hover:text-zinc-100",
+        "flex w-11/12 items-center justify-center rounded-md py-2 font-medium transition-colors duration-200 hover:bg-zinc-700/40 hover:text-zinc-100",
         {
-          "bg-zinc-700/40 text-zinc-300": highlight,
+          "text-zinc-400": !highlight,
+          "!text-zinc-300": highlight,
         }
       )}
     >
       <span className="flex w-3/4 items-center justify-start">
         <Icon size={27} className="shrink-0" />
-        <span className="ml-2 whitespace-nowrap font-medium text-zinc-300">
-          {name}
-        </span>
+        <span className="ml-4 whitespace-nowrap">{name}</span>
       </span>
     </Link>
   );
