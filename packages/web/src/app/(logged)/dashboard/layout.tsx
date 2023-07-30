@@ -11,10 +11,12 @@ export default async function Layout({
 
   return (
     <main className="flex h-screen">
-      <aside className="group fixed z-10 h-full w-56 flex-shrink-0 bg-zinc-900/20 transition-all duration-100">
-        <DashboardNavbar user={loggedUser} />
+      <aside className="flex h-full md:w-56">
+        <div className="group fixed z-10 hidden h-full w-full bg-zinc-900/20 transition-all duration-100 md:block md:w-56">
+          <DashboardNavbar user={loggedUser} />
+        </div>
       </aside>
-      <section className="mx-auto mt-12 max-w-screen-md flex-1 p-4">
+      <section className="mx-auto mt-12 h-fit flex-1 p-4 md:max-w-screen-md">
         {children}
       </section>
     </main>
