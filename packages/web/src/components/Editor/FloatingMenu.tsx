@@ -78,11 +78,13 @@ export default function FloatingMenu({ editor }: { editor: Editor }) {
     setOpen(false);
   }
 
+  console.log(getPosition(editor).getBoundingClientRect().top);
+
   return (
     <Popover.Root open={open} defaultOpen={false}>
       <Popover.Anchor asChild>
         <div
-          className="absolute z-10"
+          className="fixed z-10"
           style={{
             top: getPosition(editor).getBoundingClientRect().top,
             left: getPosition(editor).getBoundingClientRect().left,
@@ -169,6 +171,7 @@ function Item({ onClick, children }: any) {
 
 function getPosition(editor: Editor) {
   const { ranges } = editor.state.selection;
+
   const from = Math.min(...ranges.map((range) => range.$from.pos));
   const to = Math.max(...ranges.map((range) => range.$to.pos));
 
