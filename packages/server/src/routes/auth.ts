@@ -6,13 +6,22 @@ import { AuthError } from "../constants/errors";
 
 export async function authRoutes(app: FastifyInstance) {
   app.post("/auth/signin", async (request, reply) => {
-    const { email, password } = userLoginSchema.parse(request.body);
+    const { login, password } = userLoginSchema.parse(request.body);
+    
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: {
-        email,
-      },
+        OR: [
+          {
+            username: login,
+          },
+          {
+            email: login,
+          }
+        ]
+      }
     });
+    
 
     if (!user) {
       reply.status(401).send({

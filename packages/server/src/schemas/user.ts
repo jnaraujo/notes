@@ -1,12 +1,9 @@
 import { z } from "zod";
 
 export const userLoginSchema = z.object({
-  email: z
+  login: z
     .string({
-      required_error: "Email is required",
-    })
-    .email({
-      message: "Invalid email",
+      required_error: "Email or username is required",
     }),
   password: z.string({
     required_error: "Password is required",

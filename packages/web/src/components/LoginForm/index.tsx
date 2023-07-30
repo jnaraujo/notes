@@ -38,15 +38,15 @@ export default function LoginForm() {
     <form className="flex flex-col gap-4" onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <Label htmlFor="email">E-mail:</Label>
+          <Label htmlFor="login">E-mail ou nome de usuário:</Label>
           <Input
-            type="email"
-            id="email"
-            name="email"
+            type="text"
+            id="login"
+            name="login"
             required
             placeholder="Ex: joao@exemplo.com"
             tabIndex={1}
-            autoComplete="email"
+            autoComplete="email username"
           />
         </div>
         <div className="flex flex-col gap-1">
