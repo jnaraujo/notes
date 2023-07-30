@@ -11,7 +11,7 @@ export default async function Layout({
 
   return (
     <main className="flex h-screen">
-      <aside className="group z-10 h-full w-56 flex-shrink-0 bg-zinc-900/20 transition-all duration-100">
+      <aside className="group fixed z-10 h-full w-56 flex-shrink-0 bg-zinc-900/20 transition-all duration-100">
         <DashboardNavbar user={loggedUser} />
       </aside>
       <section className="mx-auto mt-12 max-w-screen-md flex-1 p-4">
